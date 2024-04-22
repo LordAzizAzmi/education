@@ -8,7 +8,7 @@ import Error from './Components/Errorpage';
 import Pokemon from './Components/Pokemon';
 import SignUp from './Components/LoginSign/SignUp'; //memanggil file Sign';
 import Login from './Components/LoginSign/Login';   //memanggil file Login';
-import TestGet from './Components/LoginSign/TestGet'; //memanggil file TestGet';
+//import TestGet from './Components/LoginSign/TestGet'; memanggil file TestGet';
 
 
 
@@ -25,6 +25,4 @@ function App() {
     ); 
 }
 export default App;
-
-
 
