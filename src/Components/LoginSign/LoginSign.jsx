@@ -4,11 +4,26 @@ import './LoginSign.css';
 import PersonIcon from '@mui/icons-material/Person';                    //memanggil icon material dari library
 import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
 import LockIcon from '@mui/icons-material/Lock';
+import { useNavigate } from 'react-router-dom';
 
 const LoginSign = () => {                                               //deklarasi fungsi loginsign
 
-    const [action, setAction] = useState("SIgn Up");                    //deklarasi variabel 
+    const [action, setAction] = useState("Sign Up");                    //deklarasi variabel 
+    const [phoneNumber, setPhoneNumber] = useState("");
+    const [password, setPassword] = useState("");
+    const navigate = useNavigate()
 
+    const handleLogin = () => {
+        if (phoneNumber === "081222" && password === "inipassword") {
+            // Jika nomor HP dan password cocok, pindahkan ke halaman home
+            // Anda dapat mengganti ini dengan logika navigasi yang sesuai di sini
+            alert("Login berhasil!");
+            // Contoh untuk pindah ke halaman home: window.location.href = "/home";
+        } else {
+            // Jika nomor HP atau password tidak cocok, berikan pesan kesalahan
+            alert("Nomor HP atau kata sandi salah!");
+        }
+    };
 
     return (
         <div className='container'>
