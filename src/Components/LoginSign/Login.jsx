@@ -5,21 +5,33 @@ import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
 import LockIcon from '@mui/icons-material/Lock';
 import { useNavigate } from 'react-router-dom';
 
-const Login = () => {                                                       //buat fungsi
-    const [phoneNumber, setPhoneNumber] = useState("");             //deklarasi variabel
+const Login = () => {
+    const [phoneNumber, setPhoneNumber] = useState("");
     const [password, setPassword] = useState("");
     const [loggedIn, setLoggedIn] = useState(false);
-    const navigate = useNavigate();                                  //deklarasi fungsi sebagai variabel
+    const navigate = useNavigate();
 
-    const handleLogin = () => {                                                 //buat fungsi
+    const handleLogin = () => {
         if (!loggedIn) {
-            // Pindah ke halaman Dashboard hanya jika semua syarat benar
-            if (phoneNumber === "081222" && password === "inipassword") {
-                setLoggedIn(true);
-                navigate('Dashboard');
-            } else {
-                alert("Nomor HP atau kata sandi salah!");
-            }
+            // Kirim permintaan GET ke server untuk mendapatkan data pengguna
+            axios.get(`http://localhost:8000/api/users?phoneNumber=${phoneNumber}`)
+                .then(function (response) {
+                    // Data pengguna ditemukan
+                    const user = response.data;
+                    if (user && user.password === password) {
+                        // Kata sandi cocok, set loggedIn ke true dan redirect ke Dashboard
+                        setLoggedIn(true);
+                        navigate('/Dashboard');
+                    } else {
+                        // Kata sandi tidak cocok
+                        alert("Nomor HP atau kata sandi salah!");
+                    }
+                })
+                .catch(function (error) {
+                    // Terjadi kesalahan saat melakukan permintaan GET
+                    console.error("Error fetching user data:", error);
+                    alert("Terjadi kesalahan saat melakukan login. Silakan coba lagi.");
+                });
         } else {
             alert("Anda sudah login!");
         }
@@ -31,20 +43,18 @@ const Login = () => {                                                       //bu
                 <div className="text">Login</div>
                 <div className="underline"></div>
             </div> 
-            <div className="inputs">                        {/* membuat form input */}
+            <div className="inputs">
                 <div className="input">
                     <PhoneAndroidIcon />
-                    {/*Form Input noHp */}
                     <input type="text" placeholder="Nomer HP" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
                 </div>
                 <div className="input">
                     <LockIcon />
-                    {/*Form Input Password */}
                     <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </div>
             </div>
             <div className="submit-container">  
-                <div className="submit" onClick={handleLogin}>Log In</div>      {/* Tombol Login dan melakukan aksi */}
+                <div className="submit" onClick={handleLogin}>Log In</div>
             </div>
         </div>
     );

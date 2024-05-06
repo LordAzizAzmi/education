@@ -16,7 +16,6 @@
     gap: 9px;
     width: 100;
     margin-top: 30px;
-
 }
 
 .text{
@@ -101,3 +100,14 @@
     background: #EAEAEA;
     color: #676767;
 }
+
+@media only screen and (max-width: 600px) {
+    .container {
+
+        margin-top: 100px;
+        width: 300px;
+    }
+    .input {
+        width: auto;
+    }
+  }

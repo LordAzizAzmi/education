@@ -15,7 +15,7 @@ const SignUp = () => {
     const handleNavigateToLogin = () => {                               
         if (username !== "" && phoneNumber !== "" && password !== "") {    
             // Kirim data ke server menggunakan Axios
-            axios.post('http://localhost:your_port/your_endpoint', {
+            axios.post('http://localhost:8000/api/register', {
                 username: username,
                 phoneNumber: phoneNumber,
                 password: password

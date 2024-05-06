@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
-import Dashboard from './Components/Dashboard';
+import Dashboard from './Components/Dashboard/Dashboard';
 import About from './Components/About';
 import {Routes, Route} from 'react-router-dom';     //memanggil library agar bisa berpindah page 
 import Header from './Components/Header';
@@ -16,10 +16,11 @@ function App() {
     return (
         <div>
         <Routes>
-            <Route path='/' element={<SignUp /> } />        {/* Memanggil fungsi Signup */}
-            <Route path='/Login' element={<Login /> } />
             <Route path='/Dashboard' element={<Dashboard /> } /> 
-            <Route path='/Getdata' element={<TestGet />} />
+            <Route path='/Register' element={<SignUp /> } />        {/* Memanggil fungsi Signup */}
+            <Route path='/Login' element={<Login /> } />
+            
+
         </Routes>
         </div>
     ); 
