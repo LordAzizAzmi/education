@@ -1,0 +1,64 @@
+.containerMenu{
+    flex-direction: column;
+    width: 1000px; /* Melebarkan container menjadi 80% dari lebar viewport */
+    height: 1000px; /* Mengatur tinggi container menjadi 80% dari tinggi viewport */
+    display: flex;
+    align-items: center;
+    background: white;
+}
+
+.HeaderMenu {
+    position: absolute;
+    width: 389px;
+    height: 176px;
+    left: 0px;
+    top: -40px;
+
+    background: #14176D;
+    border-radius: 20px;
+}
+
+.Profilepict {
+    position: absolute;
+    width: 94px;
+    height: 94px;
+    left: 280px;
+    top: 30px;
+
+    background: url(download__2_-removebg-preview.png);
+
+}
+
+/* Hi, User */
+.NameUser {
+    position: absolute;
+    width: 128px;
+    height: 40px;
+    left: 25px;
+    top: 57px;
+
+    font-family: 'Offside';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 40px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.TitleMenu {
+    /* Jenjang Kelas */
+    position: absolute;
+    width: 229px;
+    height: 40px;
+    left: 85px;
+    top: 146px;
+
+    font-family: 'Offside';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 40px;
+    text-align: center;
+    color: #000000;
+}

@@ -1,16 +1,165 @@
-.container{
-    display: flex;
-    flex-direction: column;
-    margin: auto;
-    margin-top: 200px;
-    width: 600px;
-    background: white;
-    padding-bottom: 30px;
+body {
+  margin: 0;
+  padding: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #000000;
 }
 
-.header{
-    display: flex;
-    flex-direction: column;
-    width: 100;
-    background-color: blue;
+.container1{
+  flex-direction: column;
+  width: 1000px; /* Melebarkan container menjadi 80% dari lebar viewport */
+  height: 1000px; /* Mengatur tinggi container menjadi 80% dari tinggi viewport */
+  display: flex;
+  align-items: center;
+  background: white;
+  
+}
+
+/* Circle Logo */
+.circle-container {
+  margin-bottom: 10px; /* Mengurangi margin-bottom */
+}
+
+.circle {
+  width: 200px;
+  height: 200px;
+  background-color: #fff;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.circle img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Teks Title */
+.title {
+  position: relative;
+  width: 459px;
+  height: 122px;
+
+  font-family: 'Offside', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 61px;
+  text-align: center;
+
+  color: #000000;
+}
+
+/* CARD */
+.card {
+  position: relative;
+  width: 600px;
+  height: 350px;
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  perspective: 1000px;
+  box-shadow: 0 0 0 5px #ffffff80;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  margin-bottom: 30px; /* Mengurangi margin-bottom */
+  margin-top: 40px;
+}
+
+.card svg {
+  width: 48px;
+  fill: #333;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
+}
+
+.card__content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #f2f2f2;
+  transform: rotateX(-90deg);
+  transform-origin: bottom;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card:hover .card__content {
+  transform: rotateX(0deg);
+}
+
+.card__title {
+  margin: 0;
+  font-size: 24px;
+  color: #333;
+  font-weight: 700;
+}
+
+.card:hover svg {
+  scale: 0;
+}
+
+.card__description {
+  margin: 10px 0 0;
+  font-size: 14px;
+  color: #777;
+  line-height: 1.4;
+}
+
+
+/*For Button */
+
+.buttonLGSG {
+  appearance: none;
+  background-color: transparent;
+  border: 0.125em solid #1A1A1A;
+  border-color: blue;
+  box-sizing: border-box;
+  color: blue;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0;
+  min-height: 3.75em;
+  min-width: 0;
+  outline: none;
+  padding: 1em 2.3em;
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  will-change: transform;
+}
+
+.buttonLGSG:disabled {
+  pointer-events: none;
+}
+
+.buttonLGSG:hover {
+  color: white;
+  background-color: blue;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+.buttonLGSG:active {
+  box-shadow: none;
+  transform: translateY(0);
 }
