@@ -7,52 +7,113 @@
     background: white;
 }
 
+
 .HeaderMenu {
+  position: absolute;
+  width: 244px;
+  height: 1024px;
+  left: 0px;
+  top: 0px;
+  background: #20258F;
+  border-radius: 0px 50px 50px 0px;
+
+}
+/* .HeaderMenu {
     position: absolute;
-    width: 389px;
-    height: 176px;
+    width: 1525px;
+    height: 200px;
     left: 0px;
     top: -40px;
 
     background: #14176D;
     border-radius: 20px;
+} */
+
+/* Circle Logo */
+.circleM-container {
+  margin-bottom: 10px; /* Mengurangi margin-bottom */
 }
 
-.Profilepict {
-    position: absolute;
-    width: 94px;
-    height: 94px;
-    left: 280px;
-    top: 30px;
-
-    background: url(download__2_-removebg-preview.png);
-
+.circleM {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  left: 93px;
+  top: 60px;
+  background-color: #fff;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
+
+.circleM img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* .circleM-container {
+    margin-bottom: 10px; 
+  }
+  
+  .circleM {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    left: 1300px;
+    top: 60px;
+    background-color: #fff;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .circleM img {
+    width: 100%;
+    height: auto;
+    display: block;
+  } */
 
 /* Hi, User */
 .NameUser {
     position: absolute;
     width: 128px;
     height: 40px;
-    left: 25px;
-    top: 57px;
+    left: 60px;
+    top: 150px;
 
     font-family: 'Offside';
     font-style: normal;
     font-weight: 400;
-    font-size: 32px;
+    font-size: 25px;
     line-height: 40px;
     text-align: center;
     color: #FFFFFF;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
 .TitleMenu {
-    /* Jenjang Kelas */
+  position: absolute;
+  width: 229px;
+  height: 40px;
+  left: 690px;
+  top: 20px;
+
+  font-family: "Roboto Condensed";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 40px;
+  text-align: center;
+  color: #000000;
+}
+/* .TitleMenu {
     position: absolute;
     width: 229px;
     height: 40px;
-    left: 85px;
-    top: 146px;
+    left: 650px;
+    top: 230px;
 
     font-family: 'Offside';
     font-style: normal;
@@ -61,4 +122,88 @@
     line-height: 40px;
     text-align: center;
     color: #000000;
+} */
+
+/* Card Kelas */
+.cardM-container {
+  display: flex;
+  justify-content: space-around; /* atau gunakan space-between, space-evenly, atau flex-start sesuai kebutuhan */
+  align-items: flex-start;
+  flex-wrap: wrap; /* Tambahkan ini jika ada lebih dari satu kartu untuk menyesuaikan layout */
+}
+
+.cardM {
+  width: 236px;
+  background: gray;
+  padding: 1px;
+  border-radius: 6px;
+  margin: 10px; /* Tambahkan margin untuk spasi antar kartu */
+}
+
+.cardM-image {
+  background-color: pink;
+  width: 100%;
+  height: 244px;
+  border-radius: 6px 6px 0 0;
+  overflow: hidden; /* Tambahkan ini agar gambar tidak keluar dari batas elemen */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardM-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Atur gambar agar cover seluruh elemen */
+  border-radius: inherit; /* Mewarisi border-radius dari .cardM-image */
+}
+
+.cardM-image:hover {
+  transform: scale(0.98);
+}
+
+.category {
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 1em;
+  font-weight: 600;
+  color: rgb(63, 121, 230);
+  padding: 10px 7px 0;
+}
+
+.category:hover {
+  cursor: pointer;
+}
+
+/*buttons */
+.buttonM {
+  background-color: #20258F;
+  color: white ;
+  font-family: ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: .875rem;
+  font-weight: 600;
+  line-height: 1.25rem;
+  padding: .75rem 1rem;
+  text-align: center;
+  cursor: pointer;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+}
+
+.buttonM:hover {
+  background-color: #20258F;
+}
+
+.buttonM:focus {
+  outline: 2px solid rgba(0,0,0,0.1);
+  outline-offset: 2px;
+}
+
+.buttonM:focus-visible {
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
