@@ -11,31 +11,30 @@ const Login = () => {
     const [loggedIn, setLoggedIn] = useState(false);
     const navigate = useNavigate();
 
-    const handleLogin = () => {
+    const handleLogin = async () => {
         if (!loggedIn) {
-            // Kirim permintaan GET ke server untuk mendapatkan data pengguna
-            axios.get(`http://localhost:8000/api/users?phoneNumber=${phoneNumber}`)
-                .then(function (response) {
-                    // Data pengguna ditemukan
-                    const user = response.data;
-                    if (user && user.password === password) {
-                        // Kata sandi cocok, set loggedIn ke true dan redirect ke Dashboard
-                        setLoggedIn(true);
-                        navigate('/Dashboard');
-                    } else {
-                        // Kata sandi tidak cocok
-                        alert("Nomor HP atau kata sandi salah!");
-                    }
-                })
-                .catch(function (error) {
-                    // Terjadi kesalahan saat melakukan permintaan GET
-                    console.error("Error fetching user data:", error);
-                    alert("Terjadi kesalahan saat melakukan login. Silakan coba lagi.");
-                });
+          try {
+            const response = await axios.post(`http://localhost:8000/api/login`, {
+              phone: phoneNumber,
+              password: password
+            });
+      
+            if (response.data.status === 'success') {
+              setLoggedIn(true);
+              // Store access token securely (e.g., local storage)
+              localStorage.setItem('accessToken', response.data.accessToken);
+              navigate('/Dashboard');
+            } else {
+              alert(response.data.message); // Handle login failure message
+            }
+          } catch (error) {
+            console.error("Error logging in:", error);
+            alert("Terjadi kesalahan saat melakukan login. Silakan coba lagi.");
+          }
         } else {
-            alert("Anda sudah login!");
+          alert("Anda sudah login!");
         }
-    };
+      };
 
     return (
         <div className="container">
