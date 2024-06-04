@@ -8,16 +8,16 @@ import LockIcon from '@mui/icons-material/Lock';
 
 const SignUp = () => {                                          
     const [username, setUsername] = useState("");                   
-    const [phoneNumber, setPhoneNumber] = useState("");      
+    const [phone, setphone] = useState("");      
     const [password, setPassword] = useState("");                
     const navigate = useNavigate();                              
 
     const handleNavigateToLogin = () => {                               
-        if (username !== "" && phoneNumber !== "" && password !== "") {    
+        if (username !== "" && phone !== "" && password !== "") {    
             // Kirim data ke server menggunakan Axios
             axios.post('http://localhost:8000/api/register', {
                 username: username,
-                phoneNumber: phoneNumber,
+                phone: phone,
                 password: password
             })
             .then(function (response) {
@@ -48,7 +48,7 @@ const SignUp = () => {
                 </div>
                 <div className="input">
                     <PhoneAndroidIcon />
-                    <input type="text" placeholder="Nomer HP" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
+                    <input type="text" placeholder="Nomer HP" value={phone} onChange={(e) => setphone(e.target.value)} />
                 </div>
                 <div className="input">
                     <LockIcon />
