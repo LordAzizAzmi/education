@@ -134,14 +134,15 @@
 
 .cardM {
   width: 236px;
-  background: gray;
+  background: white;
   padding: 1px;
   border-radius: 6px;
   margin: 10px; /* Tambahkan margin untuk spasi antar kartu */
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 }
 
 .cardM-image {
-  background-color: pink;
+  background-color: white;
   width: 100%;
   height: 244px;
   border-radius: 6px 6px 0 0;

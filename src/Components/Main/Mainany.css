@@ -1,0 +1,159 @@
+.containertitle {
+    position: absolute;
+    width: 850px;
+    height: 75px;
+    left: 315px;
+    top: 24px;
+    justify-self: center;
+    justify-content: center;
+
+    background: #D9D9D9;
+    border-radius: 30px;
+    display: flex;
+    /* Add flexbox for horizontal centering */
+    align-items: center;
+    /* Center vertically within flexbox */
+}
+
+.alltitletext {
+    /* Remove absolute positioning */
+    position: static;
+
+    width: 100%;
+    /* Match container width */
+    height: 100%;
+    /* Match container height */
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 45px;
+    line-height: 61px;
+    text-align: center;
+    /* Center horizontally */
+    color: #000000;
+}
+
+.containerbackbtn {
+    position: fixed;
+    /* Ubah dari 'absl' ke 'fixed' */
+    width: 50px;
+    height: 50px;
+    left: 10px;
+    /* Pindahkan elemen ke kiri layar */
+    top: 40px;
+    /* Pindahkan elemen ke atas layar */
+    background: #D9D9D9;
+    display: flex;
+    /* Menggunakan Flexbox */
+    justify-content: center;
+    /* Horizontally center */
+    align-items: center;
+    /* Vertically center */
+}
+
+.back-button {
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.containerlogo {
+    position: relative;
+    width: 500px;
+    left: 200;
+    top: 100px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    position: relative;
+    width: 500px;
+    left: 200;
+    top: 100px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.school-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.school-name {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.subjects {
+    margin-left: auto;
+}
+
+.subjects p {
+    margin: 5px 0;
+}
+
+.price-details {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+
+.class-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.class {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.class-name {
+    margin-left: 10px;
+    font-size: 16px;
+}
+
+.price {
+    margin-left: auto;
+    font-size: 14px;
+}
+
+.ok-button {
+    background-color: #337ab7;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
