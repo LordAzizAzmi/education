@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import "./MainRill.css";
 import { Link } from "react-router-dom";
-import LogoSD from "../Assets/logoSD.jpeg";
+import logoSMA from "../Assets/logoSMA.jpeg";
 
 import Image from "react-bootstrap/Image";
 
 
-const Menusd = () => {
+const Menusmp = () => {
   const [selectedMeetings, setSelectedMeetings] = useState(0);
   const [selectedSubjects, setSelectedSubjects] = useState([]);
 
@@ -31,11 +31,11 @@ const Menusd = () => {
   return (
     <div className="container">
       <div className="HeaderMenu">
-        <Image src={LogoSD} rounded />
+        <Image src={logoSMA} rounded />
         <div className="username">username</div>
         <nav>
           <ul>
-            <li>
+          <li>
               <Link to="/Dashboard">Dashboard</Link>
             </li>
             <li>
@@ -57,8 +57,8 @@ const Menusd = () => {
         Pilih Kursus
       </div>
       <div className="containerjnj">
-        <Image src={LogoSD} rounded />
-        <p>Sekolah Dasar</p>
+        <Image src={logoSMA} rounded />
+        <p>Sekolah Menengah Awal</p>
       </div>
       <div className="containerpesan">
         <p>Detail Harga</p> <br />
@@ -137,4 +137,4 @@ const Menusd = () => {
   );
 };
 
-export default Menusd;
+export default Menusmp;

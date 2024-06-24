@@ -7,88 +7,54 @@
     background: white;
 }
 
-
 .HeaderMenu {
   position: absolute;
-  width: 244px;
-  height: 1024px;
+  width: 245px;
+  height: 1000px;
   left: 0px;
   top: 0px;
   background: #20258F;
   border-radius: 0px 50px 50px 0px;
-
-}
-/* .HeaderMenu {
-    position: absolute;
-    width: 1525px;
-    height: 200px;
-    left: 0px;
-    top: -40px;
-
-    background: #14176D;
-    border-radius: 20px;
-} */
-
-/* Circle Logo */
-.circleM-container {
-  margin-bottom: 10px; /* Mengurangi margin-bottom */
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
 }
 
-.circleM {
-  position: relative;
+.HeaderMenu img {
   width: 100px;
   height: 100px;
-  left: 93px;
-  top: 60px;
-  background-color: #fff;
-  border-radius: 50%;
-  overflow: hidden;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
 }
 
-.circleM img {
-  width: 100%;
-  height: auto;
-  display: block;
+.HeaderMenu .username {
+  font-family: 'Offside';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 40px;
+  text-align: center;
+  color: #FFFFFF;
 }
 
-/* .circleM-container {
-    margin-bottom: 10px; 
-  }
-  
-  .circleM {
-    position: relative;
-    width: 100px;
-    height: 100px;
-    left: 1300px;
-    top: 60px;
-    background-color: #fff;
-    border-radius: 50%;
-    overflow: hidden;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  }
-  
-  .circleM img {
-    width: 100%;
-    height: auto;
-    display: block;
-  } */
+.HeaderMenu nav ul {
+  list-style-type: none;
+  padding: 0;
+}
 
-/* Hi, User */
-.NameUser {
-    position: absolute;
-    width: 128px;
-    height: 40px;
-    left: 60px;
-    top: 150px;
+.HeaderMenu nav ul li {
+  margin: 50px 0;
+}
 
-    font-family: 'Offside';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 25px;
-    line-height: 40px;
-    text-align: center;
-    color: #FFFFFF;
+.HeaderMenu nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 30px;
+}
+
+.HeaderMenu nav ul li a:hover {
+  text-decoration: underline;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
@@ -108,21 +74,6 @@
   text-align: center;
   color: #000000;
 }
-/* .TitleMenu {
-    position: absolute;
-    width: 229px;
-    height: 40px;
-    left: 650px;
-    top: 230px;
-
-    font-family: 'Offside';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 32px;
-    line-height: 40px;
-    text-align: center;
-    color: #000000;
-} */
 
 /* Card Kelas */
 .cardM-container {

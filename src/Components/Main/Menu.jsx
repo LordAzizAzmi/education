@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Menu.css';
+
 import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
 import LockIcon from '@mui/icons-material/Lock';
 import LogoSD from '../Assets/logoSD.jpeg';
@@ -59,15 +60,23 @@ const Menu = () => {
     <div>
       <div className="containerMenu">
         <div className="HeaderMenu">
-          <div className="circleM-container">
-            <div className="circleM">
-              {/* Isi dengan gambar atau logo */}
               <img src="" alt="" />
-            </div>
-          </div>
-          <div className="NameUser">
+          <div className="username">
             <p>{username ? `Nama User: ${username}` : 'Loading...'}</p>
           </div>
+          <nav>
+          <ul>
+            <li>
+              <Link to="/Dashboard">Dashboard</Link>
+            </li>
+            <li>
+              <Link to="/Menu">Jenjang</Link>
+            </li>
+            <li>
+              <Link to="/Login">Log Out</Link>
+            </li>
+          </ul>
+        </nav>
           <div className="TitleMenu">
             <p>Jenjang Kelas</p>
           </div>
@@ -96,24 +105,6 @@ const Menu = () => {
             <div className="category">Bahasa Inggris</div>
           </div>
         </div>
-        <Link to="/Dashboard">
-          <button className="buttonM" style={{ position: "relative", top: "-320px", left: "-630px" }}>
-            <p>Dashboard</p>
-          </button>
-        </Link>
-        <Link to="/Main">
-          <button className="buttonM" style={{ position: "relative", top: "-300px", left: "-630px" }}>
-            <p>Jenjang Kelas</p>
-          </button>
-        </Link>
-        <button className="buttonM" style={{ position: "relative", top: "-280px", left: "-630px" }}>
-          <p>Data Diri</p>
-        </button>
-        <Link to="/Login">
-          <button className="buttonM" style={{ position: "relative", top: "-260px", left: "-630px" }}>
-            <p>Log Out</p>
-          </button>
-        </Link>
       </div>
     </div>
   );
