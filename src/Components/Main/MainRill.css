@@ -1,4 +1,4 @@
-.container {
+.containerAnyMain {
     position: relative;
     height: 100vh;
     width: 100vw;
@@ -7,10 +7,10 @@
     background-color: white !important;
 }
 
-.HeaderMenu {
-    position: absolute;
+.Sidemenu {
+    position: relative;
     width: 245px;
-    height: 1000px;
+    height: 1200px;
     left: 0px;
     top: 0px;
     background: #20258F;
@@ -22,13 +22,14 @@
     padding-top: 20px;
 }
 
-.HeaderMenu img {
+.Sidemenu img {
+    margin-top: 200px;
     width: 100px;
     height: 100px;
     margin-bottom: 20px;
 }
 
-.HeaderMenu .username {
+.Sidemenu .username {
     font-family: 'Offside';
     font-style: normal;
     font-weight: 400;
@@ -38,22 +39,22 @@
     color: #FFFFFF;
 }
 
-.HeaderMenu nav ul {
+.Sidemenu nav ul {
     list-style-type: none;
     padding: 0;
 }
 
-.HeaderMenu nav ul li {
+.Sidemenu nav ul li {
     margin: 50px 0;
 }
 
-.HeaderMenu nav ul li a {
+.Sidemenu nav ul li a {
     color: white;
     text-decoration: none;
     font-size: 30px;
 }
 
-.HeaderMenu nav ul li a:hover {
+.Sidemenu nav ul li a:hover {
     text-decoration: underline;
 }
 
@@ -69,6 +70,7 @@
     border-radius: 30px;
     text-align: center;
     margin-bottom: 30px;
+    margin-top: 200px;
 }
 
 .tekstitle {
@@ -82,11 +84,26 @@
     color: #000000;
 }
 
+.course-selection {
+    position: absolute;
+    display: flex; /* Menggunakan flexbox */
+    width: 1000px;
+    height: 50px;
+    top: 47%;
+    left: 50%;
+    transform: translate(-40%, -10%);
+    background-color: white;
+    margin-bottom: 20px; /* Menambahkan jarak antara "Pilih Kursus" dan konten lainnya */
+    align-items: center;
+    border: 1px solid black;
+}
+
+
 .containerjnj {
     position: absolute;
     width: 850px;
     height: 50px;
-    top: 35%;
+    top: 45%;
     left: 50%;
     transform: translate(-50%, -10%);
     background-color: white;
@@ -94,6 +111,8 @@
     border-radius: 30px;
     display: flex; /* Menggunakan flexbox */
     align-items: center; /* Menyelaraskan item secara vertikal */
+    margin-top: 100px;
+    
 }
 
 .containerjnj img {
@@ -116,14 +135,16 @@
 .containerpesan {
     position: absolute;
     width: 1200px;
-    height: 550px;
-    top: 57%;
+    height: 500px;
+    top: 65%;
     left: 57%; /* Sesuaikan agar benar-benar di tengah horizontal */
     transform: translate(-50%, -10%);
     background-color: #EEEEEE;
     justify-content: center; /* Menyelaraskan konten secara horizontal ke tengah */
     align-items: center; /* Menyelaraskan konten secara vertikal ke tengah */
     text-align: center; /* Menyelaraskan teks di tengah secara horizontal */
+    margin-top: 100px;
+    border: 1px solid black;
 }
 
 .containerpesan p {
@@ -136,12 +157,44 @@
     margin: 0; /* Menghilangkan margin bawaan pada paragraf */
 }
 
-.container .teks {
+.teks {
     font-family: 'Nunito';
     font-style: normal;
     font-weight: 400;
-    font-size: 28px;
-    line-height: 38px;
+    font-size: 25px;
+    line-height: 33px;
     text-align: center;
     color: #000000;
 }
+
+/* .ButtonMenu {
+    position: absolute;
+    top: 140%;
+    left: 90%; 
+    transform: translate(-50%, -10%);
+}*/
+
+/* CSS */
+.buttonMenu {
+  background-color: #20258F;
+  border: 1px solid transparent;
+  top: 140%;
+  left: 90%;
+  width: 150px; 
+  height: 50px;
+  transform: translate(-50%, -10%);
+  border-radius: 3px;
+  box-shadow: rgba(255, 255, 255, .4) 0 1px 0 0 inset;
+  box-sizing: border-box;
+  color: #fff;
+  font-size: 25px;
+  cursor: pointer;
+  display: inline-block;
+  padding: 8px .8em;
+  position: absolute;
+  text-align: center;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  white-space: nowrap;
+}
+

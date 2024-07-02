@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./MainRill.css";
 import { Link } from "react-router-dom";
 import LogoSD from "../Assets/logoSD.jpeg";
-
+import Button from 'react-bootstrap/Button';
 import Image from "react-bootstrap/Image";
 
 
@@ -29,8 +29,8 @@ const Menusd = () => {
   };
 
   return (
-    <div className="container">
-      <div className="HeaderMenu">
+    <div className="containerAnyMain">
+      <div className="Sidemenu">
         <Image src={LogoSD} rounded />
         <div className="username">username</div>
         <nav>
@@ -50,11 +50,8 @@ const Menusd = () => {
       <div className="containertitle">
         <div className="tekstitle">"AMA" Education Centre</div>
       </div>
-      <div
-        className="tekstitle"
-        style={{ position: "relative", top: "150px", left: "-250px" }}
-      >
-        Pilih Kursus
+      <div className="course-selection">
+          <div className="tekstitle" style={{marginLeft:"10px"}}>Pilih Kursus</div>
       </div>
       <div className="containerjnj">
         <Image src={LogoSD} rounded />
@@ -62,26 +59,7 @@ const Menusd = () => {
       </div>
       <div className="containerpesan">
         <p>Detail Harga</p> <br />
-        <div>
-          <input
-            type="radio"
-            id="1x"
-            name="meetings"
-            value="1"
-            onChange={handleMeetingChange}
-          />
-          <label htmlFor="1x" className="teks">1 x Pertemuan - Rp. 110.000 /bln</label>
-        </div>
-        <div>
-          <input
-            type="radio"
-            id="2x"
-            name="meetings"
-            value="2"
-            onChange={handleMeetingChange}
-          />
-          <label htmlFor="2x" className="teks">2 x Pertemuan - Rp. 220.000 /bln</label>
-        </div>
+        <p>Kelas 1 - 2</p> <br />
         <div>
           <input
             type="radio"
@@ -90,30 +68,31 @@ const Menusd = () => {
             value="3"
             onChange={handleMeetingChange}
           />
-          <label htmlFor="3x" className="teks">3 x Pertemuan - Rp. 330.000 /bln</label>
+          <label htmlFor="3x" className="teks">3 x Seminggu - Rp. 250.000 /bln</label>
+        </div>
+        <br/><p>Kelas 3 - 6</p> <br />
+        <div>
+          <input
+            type="radio"
+            id="2x"
+            name="meetings"
+            value="2"
+            onChange={handleMeetingChange}
+          />
+          <label htmlFor="2x" className="teks">2 x Seminggu - Rp. 200.000 /bln</label>
         </div>
         <div>
           <input
             type="radio"
-            id="4x"
+            id="3x1"
             name="meetings"
-            value="4"
+            value="3"
             onChange={handleMeetingChange}
           />
-          <label htmlFor="4x" className="teks">4 x Pertemuan - Rp. 480.000 /bln</label>
-        </div>
-        <div>
-          <input
-            type="radio"
-            id="5x"
-            name="meetings"
-            value="5"
-            onChange={handleMeetingChange}
-          />
-          <label htmlFor="5x" className="teks">5 x Pertemuan - Rp. 600.000 /bln</label>
+          <label htmlFor="3x1" className="teks">3 x Seminggu - Rp. 270.000 /bln</label>
         </div>
         <h3>Pilih Pelajaran:</h3>
-          <div className="teks">{["Matematika", "Fisika", "Kimia", "Biologi", "Bahasa Inggris"].map(
+          <div className="teks">{["Matematika", "IPA", "IPS", "Bahasa Indonesia"].map(
             (subject) => (
               <div key={subject}>
                 <input
@@ -133,6 +112,7 @@ const Menusd = () => {
         )}
         </div>
       </div>
+      <Button className="buttonMenu">Oke</Button>{' '}
     </div>
   );
 };

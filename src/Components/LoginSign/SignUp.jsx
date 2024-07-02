@@ -57,7 +57,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className='container'>
+    <div className='containerls'>
       <div className="header">
         <div className="text">Sign Up</div>
         <div className="underline"></div>

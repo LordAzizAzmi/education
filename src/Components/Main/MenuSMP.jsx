@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./MainRill.css";
 import { Link } from "react-router-dom";
 import logoSMP from "../Assets/logoSMP.jpeg";
-
+import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
 
 
@@ -29,8 +29,8 @@ const Menusmp = () => {
   };
 
   return (
-    <div className="container">
-      <div className="HeaderMenu">
+    <div className="containerAnyMain">
+      <div className="Sidemenu">
         <Image src={logoSMP} rounded />
         <div className="username">username</div>
         <nav>
@@ -50,11 +50,8 @@ const Menusmp = () => {
       <div className="containertitle">
         <div className="tekstitle">"AMA" Education Centre</div>
       </div>
-      <div
-        className="tekstitle"
-        style={{ position: "relative", top: "150px", left: "-250px" }}
-      >
-        Pilih Kursus
+      <div className="course-selection">
+          <div className="tekstitle" style={{marginLeft:"10px"}}>Pilih Kursus</div>
       </div>
       <div className="containerjnj">
         <Image src={logoSMP} rounded />
@@ -92,28 +89,8 @@ const Menusmp = () => {
           />
           <label htmlFor="3x" className="teks">3 x Pertemuan - Rp. 330.000 /bln</label>
         </div>
-        <div>
-          <input
-            type="radio"
-            id="4x"
-            name="meetings"
-            value="4"
-            onChange={handleMeetingChange}
-          />
-          <label htmlFor="4x" className="teks">4 x Pertemuan - Rp. 480.000 /bln</label>
-        </div>
-        <div>
-          <input
-            type="radio"
-            id="5x"
-            name="meetings"
-            value="5"
-            onChange={handleMeetingChange}
-          />
-          <label htmlFor="5x" className="teks">5 x Pertemuan - Rp. 600.000 /bln</label>
-        </div>
         <h3>Pilih Pelajaran:</h3>
-          <div className="teks">{["Matematika", "Fisika", "Kimia", "Biologi", "Bahasa Inggris"].map(
+          <div className="teks">{["Matematika", "Ipa Terpadu", "Bahasa Inggris"].map(
             (subject) => (
               <div key={subject}>
                 <input
@@ -133,6 +110,7 @@ const Menusmp = () => {
         )}
         </div>
       </div>
+      <Button className="buttonMenu">Oke</Button>{' '}
     </div>
   );
 };

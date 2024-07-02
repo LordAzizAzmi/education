@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import "./MainRill.css";
 import { Link } from "react-router-dom";
-import logoSMA from "../Assets/logoSMA.jpeg";
-import Button from 'react-bootstrap/Button';
+import logoTK from "../Assets/logoTK.png";
+import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
+
 
 const Menusmp = () => {
   const [selectedMeetings, setSelectedMeetings] = useState(0);
@@ -12,6 +13,7 @@ const Menusmp = () => {
   const handleMeetingChange = (event) => {
     const meetings = parseInt(event.target.value);
     setSelectedMeetings(meetings);
+    // Reset selected subjects if the number of allowed subjects is decreased
     if (selectedSubjects.length > meetings) {
       setSelectedSubjects(selectedSubjects.slice(0, meetings));
     }
@@ -29,11 +31,11 @@ const Menusmp = () => {
   return (
     <div className="containerAnyMain">
       <div className="Sidemenu">
-        <Image src={logoSMA} rounded />
+        <Image src={logoTK} rounded />
         <div className="username">username</div>
         <nav>
           <ul>
-            <li>
+          <li>
               <Link to="/Dashboard">Dashboard</Link>
             </li>
             <li>
@@ -52,11 +54,11 @@ const Menusmp = () => {
           <div className="tekstitle" style={{marginLeft:"10px"}}>Pilih Kursus</div>
       </div>
       <div className="containerjnj">
-        <Image src={logoSMA} rounded />
-        <p>Sekolah Menengah Awal</p>
+        <Image src={logoTK} rounded />
+        <p>Taman Kanak-Kanak</p>
       </div>
       <div className="containerpesan">
-        <p>Detail Harga</p> <br />
+        <p style={{marginTop:"100px"}}>Detail Harga</p> <br />
         <div>
           <input
             type="radio"
@@ -65,61 +67,10 @@ const Menusmp = () => {
             value="1"
             onChange={handleMeetingChange}
           />
-          <label htmlFor="1x" className="teks">
-            1 x Pertemuan - Rp. 110.000 /bln
-          </label>
-        </div>
-        <div>
-          <input
-            type="radio"
-            id="2x"
-            name="meetings"
-            value="2"
-            onChange={handleMeetingChange}
-          />
-          <label htmlFor="2x" className="teks">
-            2 x Pertemuan - Rp. 220.000 /bln
-          </label>
-        </div>
-        <div>
-          <input
-            type="radio"
-            id="3x"
-            name="meetings"
-            value="3"
-            onChange={handleMeetingChange}
-          />
-          <label htmlFor="3x" className="teks">
-            3 x Pertemuan - Rp. 330.000 /bln
-          </label>
-        </div>
-        <div>
-          <input
-            type="radio"
-            id="4x"
-            name="meetings"
-            value="4"
-            onChange={handleMeetingChange}
-          />
-          <label htmlFor="4x" className="teks">
-            4 x Pertemuan - Rp. 480.000 /bln
-          </label>
-        </div>
-        <div>
-          <input
-            type="radio"
-            id="5x"
-            name="meetings"
-            value="5"
-            onChange={handleMeetingChange}
-          />
-          <label htmlFor="5x" className="teks">
-            5 x Pertemuan - Rp. 600.000 /bln
-          </label>
+          <label htmlFor="1x" className="teks">3 x Seminggu - Rp. 250.000 /bln</label>
         </div>
         <h3>Pilih Pelajaran:</h3>
-        <div className="teks">
-          {["Matematika", "Fisika", "Kimia", "Biologi", "Bahasa Inggris"].map(
+          <div className="teks">{["Calistung (Baca, Tulis, Hitung"].map(
             (subject) => (
               <div key={subject}>
                 <input
@@ -133,10 +84,10 @@ const Menusmp = () => {
                     !selectedSubjects.includes(subject)
                   }
                 />
-                <label htmlFor={subject}>{subject}</label>
-              </div>
-            )
-          )}
+              <label htmlFor={subject}>{subject}</label>
+            </div>
+          )
+        )}
         </div>
       </div>
       <Button className="buttonMenu">Oke</Button>{' '}

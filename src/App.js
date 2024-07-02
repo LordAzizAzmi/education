@@ -6,6 +6,7 @@ import SignUp from './Components/LoginSign/SignUp'; //memanggil file Sign';
 import Login from './Components/LoginSign/Login';   //memanggil file Login';
 import ProtectedRoute from './Components/ProtectedRoute';
 import Menu from './Components/Main/Menu'; //memanggil file Menu';
+import MenuTK from './Components/Main/MenuTK'
 import MenuSD from './Components/Main/MenuSD';
 import MenuSMP from './Components/Main/MenuSMP';
 import MenuSMA from './Components/Main/MenuSMA';
@@ -21,7 +22,8 @@ function App() {
             <Route path='/Dashboard' element={<Dashboard /> } /> 
             <Route path='/Register' element={<SignUp /> } />        {/* Memanggil fungsi Signup */}
             <Route path='/Login' element={<Login /> } />
-            <Route path='/Menu' element={<ProtectedRoute> <Menu /> </ProtectedRoute>} />
+            <Route path='/Menu' element={ <Menu /> } />
+            <Route path='/MenuTK' element={ <MenuTK /> } />
             <Route path='/MenuSD' element={<MenuSD />} />
             <Route path='/MenuSMP' element={<MenuSMP />} />
             <Route path='/MenuSMA' element={<MenuSMA />} />
