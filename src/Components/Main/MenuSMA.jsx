@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./MainRill.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logoSMA from "../Assets/logoSMA.jpeg";
 import Button from 'react-bootstrap/Button';
 import Image from "react-bootstrap/Image";
@@ -8,6 +8,7 @@ import Image from "react-bootstrap/Image";
 const Menusmp = () => {
   const [selectedMeetings, setSelectedMeetings] = useState(0);
   const [selectedSubjects, setSelectedSubjects] = useState([]);
+  const navigate = useNavigate();
 
   const handleMeetingChange = (event) => {
     const meetings = parseInt(event.target.value);
@@ -24,6 +25,15 @@ const Menusmp = () => {
     } else if (selectedSubjects.length < selectedMeetings) {
       setSelectedSubjects([...selectedSubjects, subject]);
     }
+  };
+
+  const handleSubmit = () => {
+    navigate('/form', {
+      state: {
+        selectedMeetings,
+        selectedSubjects
+      }
+    });
   };
 
   return (
@@ -49,7 +59,7 @@ const Menusmp = () => {
         <div className="tekstitle">"AMA" Education Centre</div>
       </div>
       <div className="course-selection">
-          <div className="tekstitle" style={{marginLeft:"10px"}}>Pilih Kursus</div>
+        <div className="tekstitle" style={{marginLeft:"10px"}}>Pilih Kursus</div>
       </div>
       <div className="containerjnj">
         <Image src={logoSMA} rounded />
@@ -139,7 +149,7 @@ const Menusmp = () => {
           )}
         </div>
       </div>
-      <Button className="buttonMenu">Oke</Button>{' '}
+      <Button className="buttonMenu" onClick={handleSubmit}>Oke</Button>
     </div>
   );
 };

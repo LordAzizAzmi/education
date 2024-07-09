@@ -10,7 +10,10 @@ import MenuTK from './Components/Main/MenuTK'
 import MenuSD from './Components/Main/MenuSD';
 import MenuSMP from './Components/Main/MenuSMP';
 import MenuSMA from './Components/Main/MenuSMA';
+import Form from './Components/Form/Form';
 import Box from './Components/Main/Box';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 //import TestGet from './Components/LoginSign/TestGet'; memanggil file TestGet';
 
 
@@ -27,6 +30,7 @@ function App() {
             <Route path='/MenuSD' element={<MenuSD />} />
             <Route path='/MenuSMP' element={<MenuSMP />} />
             <Route path='/MenuSMA' element={<MenuSMA />} />
+            <Route path='/Form' element={<Form />} />
             <Route path='/Box' element={<Box/>} />
         </Routes>
         </div>
