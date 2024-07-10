@@ -53,8 +53,8 @@ body {
   color: #000000;
 }
 
-/* CARD */
-.card {
+/* carddashboard */
+.carddashboard {
   position: relative;
   width: 600px;
   height: 350px;
@@ -71,18 +71,18 @@ body {
   margin-top: 40px;
 }
 
-.card svg {
+.carddashboard svg {
   width: 48px;
   fill: #333;
   transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.card:hover {
+.carddashboard:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
 }
 
-.card__content {
+.carddashboard__content {
   position: absolute;
   top: 0;
   left: 0;
@@ -96,22 +96,22 @@ body {
   transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.card:hover .card__content {
+.carddashboard:hover .carddashboard__content {
   transform: rotateX(0deg);
 }
 
-.card__title {
+.carddashboard__title {
   margin: 0;
   font-size: 24px;
   color: #333;
   font-weight: 700;
 }
 
-.card:hover svg {
+.carddashboard:hover svg {
   scale: 0;
 }
 
-.card__description {
+.carddashboard__description {
   margin: 10px 0 0;
   font-size: 14px;
   color: #777;

@@ -1,4 +1,3 @@
-// src/components/Login.jsx
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './LoginSign.css';
@@ -35,7 +34,7 @@ const Login = () => {
 
         if (response.data.status === 'success') {
           setLoggedIn(true);
-          localStorage.setItem('accessToken', response.data.accessToken);
+          localStorage.setItem('username', response.data.data.username); // Store the username
           navigate('/Menu');
         } else {
           alert(`Login failed: ${response.data.message}`);
@@ -58,8 +57,8 @@ const Login = () => {
   };
 
   useEffect(() => {
-    const accessToken = localStorage.getItem('accessToken');
-    if (accessToken) {
+    const username = localStorage.getItem('username');
+    if (username) {
       setLoggedIn(true);
     }
   }, []);

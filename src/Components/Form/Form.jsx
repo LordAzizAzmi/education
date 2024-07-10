@@ -4,12 +4,13 @@ import "./Form.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import logouser from "../Assets/userdefault.png";
 import Image from "react-bootstrap/Image";
+import Table from 'react-bootstrap/Table';
 import { Form, Button } from 'react-bootstrap';
 
 const Formpage = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { selectedMeetings, selectedSubjects } = location.state || {};
+  const { paket, selectedMeeting, selectedSubjects } = location.state || {};
   const [formData, setFormData] = useState({
     nama: '',
     alamat: '',
@@ -31,7 +32,8 @@ const Formpage = () => {
     event.preventDefault();
     const dataToSubmit = {
       ...formData,
-      selectedMeetings,
+      paket,
+      selectedMeeting,
       selectedSubjects
     };
 
@@ -84,6 +86,22 @@ const Formpage = () => {
         </div>
       </div>
       <div className="containerForm">
+        <Table style={{ marginLeft:"25px", width:"1000px"}}>
+          <tbody>
+            <tr>
+              <th>Paket : </th>
+              <td>{paket}</td>
+            </tr>
+            <tr>
+              <th>Pertemuan : </th>
+              <td>{selectedMeeting?.meetings} x Pertemuan - {selectedMeeting?.price}</td>
+            </tr>
+            <tr>
+              <th>Pelajaran : </th>
+              <td>{selectedSubjects.join(', ')}</td>
+            </tr>
+          </tbody>
+        </Table>
         <Form onSubmit={handleSubmit} style={{marginTop:"25px", marginLeft:"25px", marginRight:"25px"}}>
           <Form.Group className="mb-3" controlId="nama">
             <Form.Label>Nama</Form.Label>

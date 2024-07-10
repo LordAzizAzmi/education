@@ -58,6 +58,12 @@
     text-decoration: underline;
 }
 
+.SideLogout {
+    color: white;
+    text-decoration: none;
+    font-size: 30px;
+  }
+
 .containertitle {
     position: absolute;
     width: 850px;

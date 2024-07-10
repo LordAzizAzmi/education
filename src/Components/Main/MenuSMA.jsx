@@ -1,20 +1,31 @@
-import React, { useState } from "react";
-import "./MainRill.css";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import logoSMA from "../Assets/logoSMA.jpeg";
-import Button from 'react-bootstrap/Button';
 import Image from "react-bootstrap/Image";
+import Button from 'react-bootstrap/Button';
+import logoSMA from "../Assets/logoSMA.jpeg";
+import logouser from "../Assets/userdefault.png";
+import "./MainRill.css";
 
-const Menusmp = () => {
-  const [selectedMeetings, setSelectedMeetings] = useState(0);
+const Menusma = () => {
+  const [selectedMeeting, setSelectedMeeting] = useState(null);
   const [selectedSubjects, setSelectedSubjects] = useState([]);
+  const [username, setUsername] = useState('');
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const storedUsername = localStorage.getItem('username');
+    if (storedUsername) {
+      setUsername(storedUsername);
+    } else {
+      navigate('/login');
+    }
+  }, [navigate]);
+
   const handleMeetingChange = (event) => {
-    const meetings = parseInt(event.target.value);
-    setSelectedMeetings(meetings);
-    if (selectedSubjects.length > meetings) {
-      setSelectedSubjects(selectedSubjects.slice(0, meetings));
+    const [meetings, price] = event.target.value.split(',');
+    setSelectedMeeting({ meetings: parseInt(meetings), price: price.trim() });
+    if (selectedSubjects.length > parseInt(meetings)) {
+      setSelectedSubjects(selectedSubjects.slice(0, parseInt(meetings)));
     }
   };
 
@@ -22,7 +33,7 @@ const Menusmp = () => {
     const subject = event.target.value;
     if (selectedSubjects.includes(subject)) {
       setSelectedSubjects(selectedSubjects.filter((s) => s !== subject));
-    } else if (selectedSubjects.length < selectedMeetings) {
+    } else if (selectedSubjects.length < selectedMeeting.meetings) {
       setSelectedSubjects([...selectedSubjects, subject]);
     }
   };
@@ -30,17 +41,25 @@ const Menusmp = () => {
   const handleSubmit = () => {
     navigate('/form', {
       state: {
-        selectedMeetings,
+        paket: 'SMA',
+        selectedMeeting,
         selectedSubjects
       }
     });
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('username');
+    navigate('/login');
+  };
+
   return (
     <div className="containerAnyMain">
       <div className="Sidemenu">
-        <Image src={logoSMA} rounded />
-        <div className="username">username</div>
+        <Image src={logouser} rounded />
+        <div className="username">
+          <p>{username ? `${username}` : 'Loading...'}</p>
+        </div>
         <nav>
           <ul>
             <li>
@@ -50,7 +69,7 @@ const Menusmp = () => {
               <Link to="/Menu">Jenjang</Link>
             </li>
             <li>
-              <Link to="/Login">Log Out</Link>
+              <div className="SideLogout" onClick={handleLogout} style={{ cursor: 'pointer' }}>Log Out</div>
             </li>
           </ul>
         </nav>
@@ -63,7 +82,7 @@ const Menusmp = () => {
       </div>
       <div className="containerjnj">
         <Image src={logoSMA} rounded />
-        <p>Sekolah Menengah Awal</p>
+        <p>Sekolah Menengah Atas</p>
       </div>
       <div className="containerpesan">
         <p>Detail Harga</p> <br />
@@ -72,7 +91,7 @@ const Menusmp = () => {
             type="radio"
             id="1x"
             name="meetings"
-            value="1"
+            value="1, Rp. 110.000 /bln"
             onChange={handleMeetingChange}
           />
           <label htmlFor="1x" className="teks">
@@ -84,7 +103,7 @@ const Menusmp = () => {
             type="radio"
             id="2x"
             name="meetings"
-            value="2"
+            value="2, Rp. 220.000 /bln"
             onChange={handleMeetingChange}
           />
           <label htmlFor="2x" className="teks">
@@ -96,7 +115,7 @@ const Menusmp = () => {
             type="radio"
             id="3x"
             name="meetings"
-            value="3"
+            value="3, Rp. 330.000 /bln"
             onChange={handleMeetingChange}
           />
           <label htmlFor="3x" className="teks">
@@ -108,7 +127,7 @@ const Menusmp = () => {
             type="radio"
             id="4x"
             name="meetings"
-            value="4"
+            value="4, Rp. 480.000 /bln"
             onChange={handleMeetingChange}
           />
           <label htmlFor="4x" className="teks">
@@ -120,7 +139,7 @@ const Menusmp = () => {
             type="radio"
             id="5x"
             name="meetings"
-            value="5"
+            value="5, Rp. 600.000 /bln"
             onChange={handleMeetingChange}
           />
           <label htmlFor="5x" className="teks">
@@ -139,7 +158,7 @@ const Menusmp = () => {
                   checked={selectedSubjects.includes(subject)}
                   onChange={handleSubjectChange}
                   disabled={
-                    selectedSubjects.length >= selectedMeetings &&
+                    selectedSubjects.length >= selectedMeeting?.meetings &&
                     !selectedSubjects.includes(subject)
                   }
                 />
@@ -149,9 +168,9 @@ const Menusmp = () => {
           )}
         </div>
       </div>
-      <Button className="buttonMenu" onClick={handleSubmit}>Oke</Button>
+      <Button className="buttonMenu" onClick={handleSubmit} disabled={!selectedMeeting}>Oke</Button>
     </div>
   );
 };
 
-export default Menusmp;
+export default Menusma;
