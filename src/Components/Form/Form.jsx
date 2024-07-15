@@ -6,6 +6,7 @@ import Table from 'react-bootstrap/Table';
 import { Form, Button } from 'react-bootstrap';
 import "../../Components/Main/MainRill.css";
 import "./Form.css";
+import API_BASE_URL from '../../../src/apiConfig';
 
 const Formpage = () => {
   const location = useLocation();
@@ -53,7 +54,7 @@ const Formpage = () => {
     };
 
     try {
-      const response = await fetch('http://54.253.199.95:5000/form', {
+      const response = await fetch(`${API_BASE_URL}/form`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
