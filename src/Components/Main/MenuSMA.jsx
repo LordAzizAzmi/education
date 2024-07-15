@@ -8,7 +8,7 @@ import "./MainRill.css";
 
 const Menusma = () => {
   const [selectedMeeting, setSelectedMeeting] = useState(null);
-  const [selectedSubjects, setSelectedSubjects] = useState([]);
+  const [nama_kursus, setNamaKursus] = useState([]);
   const [username, setUsername] = useState('');
   const navigate = useNavigate();
 
@@ -21,20 +21,36 @@ const Menusma = () => {
     }
   }, [navigate]);
 
+  useEffect(() => {
+    const checkInactivity = () => {
+      const lastActive = parseInt(localStorage.getItem('lastActive'), 10);
+      const now = Date.now();
+      const maxInactivityTime = 30 * 60 * 1000; // 30 minutes
+
+      if (now - lastActive > maxInactivityTime) {
+        handleLogout();
+      }
+    };
+
+    const intervalId = setInterval(checkInactivity, 60 * 1000); // Check every 1 minute
+
+    return () => clearInterval(intervalId);
+  }, []);
+
   const handleMeetingChange = (event) => {
     const [meetings, price] = event.target.value.split(',');
-    setSelectedMeeting({ meetings: parseInt(meetings), price: price.trim() });
-    if (selectedSubjects.length > parseInt(meetings)) {
-      setSelectedSubjects(selectedSubjects.slice(0, parseInt(meetings)));
+    setSelectedMeeting({ meetings: parseInt(meetings), price: parseFloat(price.replace(/[^0-9.-]+/g,"")) });
+    if (nama_kursus.length > parseInt(meetings)) {
+      setNamaKursus(nama_kursus.slice(0, parseInt(meetings)));
     }
   };
 
   const handleSubjectChange = (event) => {
     const subject = event.target.value;
-    if (selectedSubjects.includes(subject)) {
-      setSelectedSubjects(selectedSubjects.filter((s) => s !== subject));
-    } else if (selectedSubjects.length < selectedMeeting.meetings) {
-      setSelectedSubjects([...selectedSubjects, subject]);
+    if (nama_kursus.includes(subject)) {
+      setNamaKursus(nama_kursus.filter((s) => s !== subject));
+    } else if (nama_kursus.length < selectedMeeting.meetings) {
+      setNamaKursus([...nama_kursus, subject]);
     }
   };
 
@@ -43,13 +59,15 @@ const Menusma = () => {
       state: {
         paket: 'SMA',
         selectedMeeting,
-        selectedSubjects
+        nama_kursus
       }
     });
   };
 
   const handleLogout = () => {
     localStorage.removeItem('username');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('lastActive');
     navigate('/login');
   };
 
@@ -91,7 +109,7 @@ const Menusma = () => {
             type="radio"
             id="1x"
             name="meetings"
-            value="1, Rp. 110.000 /bln"
+            value="1, 110000"
             onChange={handleMeetingChange}
           />
           <label htmlFor="1x" className="teks">
@@ -103,7 +121,7 @@ const Menusma = () => {
             type="radio"
             id="2x"
             name="meetings"
-            value="2, Rp. 220.000 /bln"
+            value="2, 220000"
             onChange={handleMeetingChange}
           />
           <label htmlFor="2x" className="teks">
@@ -115,7 +133,7 @@ const Menusma = () => {
             type="radio"
             id="3x"
             name="meetings"
-            value="3, Rp. 330.000 /bln"
+            value="3, 330000"
             onChange={handleMeetingChange}
           />
           <label htmlFor="3x" className="teks">
@@ -127,7 +145,7 @@ const Menusma = () => {
             type="radio"
             id="4x"
             name="meetings"
-            value="4, Rp. 480.000 /bln"
+            value="4, 480000"
             onChange={handleMeetingChange}
           />
           <label htmlFor="4x" className="teks">
@@ -139,7 +157,7 @@ const Menusma = () => {
             type="radio"
             id="5x"
             name="meetings"
-            value="5, Rp. 600.000 /bln"
+            value="5, 600000"
             onChange={handleMeetingChange}
           />
           <label htmlFor="5x" className="teks">
@@ -155,11 +173,11 @@ const Menusma = () => {
                   type="checkbox"
                   id={subject}
                   value={subject}
-                  checked={selectedSubjects.includes(subject)}
+                  checked={nama_kursus.includes(subject)}
                   onChange={handleSubjectChange}
                   disabled={
-                    selectedSubjects.length >= selectedMeeting?.meetings &&
-                    !selectedSubjects.includes(subject)
+                    nama_kursus.length >= selectedMeeting?.meetings &&
+                    !nama_kursus.includes(subject)
                   }
                 />
                 <label htmlFor={subject}>{subject}</label>

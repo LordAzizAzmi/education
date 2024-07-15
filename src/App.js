@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
 import Dashboard from './Components/Dashboard/Dashboard';
-import {Routes, Route} from 'react-router-dom';     //memanggil library agar bisa berpindah page 
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';    //memanggil library agar bisa berpindah page 
 import SignUp from './Components/LoginSign/SignUp'; //memanggil file Sign';
 import Login from './Components/LoginSign/Login';   //memanggil file Login';
 import ProtectedRoute from './Components/ProtectedRoute';
@@ -21,7 +21,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
     return (
         <div>
+        <router>
         <Routes>
+            <Route path="/" element={<Dashboard />} />
             <Route path='/Dashboard' element={<Dashboard /> } /> 
             <Route path='/Register' element={<SignUp /> } />        {/* Memanggil fungsi Signup */}
             <Route path='/Login' element={<Login /> } />
@@ -33,6 +35,7 @@ function App() {
             <Route path='/Form' element={<Form />} />
             <Route path='/Box' element={<Box/>} />
         </Routes>
+        </router>
         </div>
     ); 
 }

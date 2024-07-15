@@ -17,12 +17,30 @@ const Menu = () => {
     if (storedUsername) {
       setUsername(storedUsername);
     } else {
-      navigate('/login');
+      navigate('/login'); // Jika username tidak ada di localStorage, arahkan kembali ke halaman login
     }
   }, [navigate]);
 
+  useEffect(() => {
+    const checkInactivity = () => {
+      const lastActive = parseInt(localStorage.getItem('lastActive'), 10);
+      const now = Date.now();
+      const maxInactivityTime = 30 * 60 * 1000; // 30 minutes
+
+      if (now - lastActive > maxInactivityTime) {
+        handleLogout();
+      }
+    };
+
+    const intervalId = setInterval(checkInactivity, 60 * 1000); // Check every 1 minute
+
+    return () => clearInterval(intervalId);
+  }, []);
+
   const handleLogout = () => {
     localStorage.removeItem('username');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('lastActive');
     navigate('/login');
   };
 
@@ -30,9 +48,9 @@ const Menu = () => {
     <div>
       <div className="containerMenu">
         <div className="HeaderMenu">
-        <Image src={logouser} rounded />
+          <Image src={logouser} rounded />
           <div className="username">
-            <p>{username ? `${username}` : 'Loading...'}</p>
+            <p>{username ? `${username}` : 'Loading...'}</p> {/* Gunakan backticks (`) untuk interpolation */}
           </div>
           <nav>
             <ul>
@@ -52,37 +70,37 @@ const Menu = () => {
           </div>
         </div>
         <div className="cardM-container">
-        <Link to="/MenuTK">
-          <div className="cardM" style={{ position: "relative", top: "106px", left: "-75px" }}>
-            <div className="cardM-image"><img src={LogoTK} alt="LogoTK" /></div>
-            <div className="category">TK</div>
-          </div>
+          <Link to="/MenuTK">
+            <div className="cardM" style={{ position: "relative", top: "106px", left: "-75px" }}>
+              <div className="cardM-image"><img src={LogoTK} alt="LogoTK" /></div>
+              <div className="category">TK</div>
+            </div>
           </Link>
           <Link to="/MenuSD">
-          <div className="cardM" style={{ position: "relative", top: "106px", left: "40px" }}>
-            <div className="cardM-image"><img src={LogoSD} alt="LogoSD" /></div>
-            <div className="category">SD</div>
-          </div>
+            <div className="cardM" style={{ position: "relative", top: "106px", left: "40px" }}>
+              <div className="cardM-image"><img src={LogoSD} alt="LogoSD" /></div>
+              <div className="category">SD</div>
+            </div>
           </Link>
           <Link to="/MenuSMP">
-          <div className="cardM" style={{ position: "relative", top: "106px", left: "150px" }}>
-            <div className="cardM-image"><img src={LogoSMP} alt="LogoSMP" /></div>
-            <div className="category">SMP</div>
-          </div>
+            <div className="cardM" style={{ position: "relative", top: "106px", left: "150px" }}>
+              <div className="cardM-image"><img src={LogoSMP} alt="LogoSMP" /></div>
+              <div className="category">SMP</div>
+            </div>
           </Link>
         </div>
         <div className="cardM-container">
           <Link to="/MenuSMA">
-          <div className="cardM" style={{ position: "relative", top: "206px", left: "-80px" }}>
-            <div className="cardM-image"><img src={LogoSMA} alt="LogoSMA" /></div>
-            <div className="category">SMA</div>
-          </div>
+            <div className="cardM" style={{ position: "relative", top: "206px", left: "-80px" }}>
+              <div className="cardM-image"><img src={LogoSMA} alt="LogoSMA" /></div>
+              <div className="category">SMA</div>
+            </div>
           </Link>
           <Link to="/MenuEnglish">
-          <div className="cardM" style={{ position: "relative", top: "206px", left: "120px" }}>
-            <div className="cardM-image"></div>
-            <div className="category">Bahasa Inggris</div>
-          </div>
+            <div className="cardM" style={{ position: "relative", top: "206px", left: "120px" }}>
+              <div className="cardM-image"></div>
+              <div className="category">Bahasa Inggris</div>
+            </div>
           </Link>
         </div>
       </div>

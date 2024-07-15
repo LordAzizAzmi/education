@@ -11,6 +11,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const [phoneError, setPhoneError] = useState("");
+  const [loginError, setLoginError] = useState("");
   const navigate = useNavigate();
 
   const handlePhoneChange = (event) => {
@@ -19,13 +20,14 @@ const Login = () => {
       setPhoneError("Nomor HP tidak boleh lebih dari 12 digit");
       return;
     }
+    setPhoneError("");
     setPhone(newPhone);
   };
 
   const handleLogin = async () => {
     if (!loggedIn) {
       try {
-        const response = await axios.post(`${API_BASE_URL}/login`, {
+        const response = await axios.post(`${API_BASE_URL}/users/verify`, {
           phone,
           password
         });
@@ -34,21 +36,23 @@ const Login = () => {
 
         if (response.data.status === 'success') {
           setLoggedIn(true);
-          localStorage.setItem('username', response.data.data.username); // Store the username
+          localStorage.setItem('userId', response.data.data.userId);
+          localStorage.setItem('username', response.data.data.username);
+          localStorage.setItem('lastActive', Date.now().toString()); // Store the current time for activity check
           navigate('/Menu');
         } else {
-          alert(`Login failed: ${response.data.message}`);
+          setLoginError(`Login failed: ${response.data.message}`);
         }
       } catch (error) {
         if (error.response) {
           console.error("Server responded with error:", error.response.data);
-          alert(`Login failed: ${error.response.data.message || 'Unknown error'}`);
+          setLoginError(`Login failed: ${error.response.data.message || 'Unknown error'}`);
         } else if (error.request) {
           console.error("No response received:", error.request);
-          alert("No response from server. Please check your network.");
+          setLoginError("No response from server. Please check your network.");
         } else {
           console.error("Error setting up request:", error.message);
-          alert("Terjadi kesalahan saat melakukan login. Silakan coba lagi.");
+          setLoginError("Terjadi kesalahan saat melakukan login. Silakan coba lagi.");
         }
       }
     } else {
@@ -57,10 +61,24 @@ const Login = () => {
   };
 
   useEffect(() => {
-    const username = localStorage.getItem('username');
-    if (username) {
+    const storedUsername = localStorage.getItem('username');
+    if (storedUsername) {
       setLoggedIn(true);
     }
+  }, []);
+
+  useEffect(() => {
+    const handleActivity = () => {
+      localStorage.setItem('lastActive', Date.now().toString()); // Update activity time
+    };
+
+    window.addEventListener('mousemove', handleActivity);
+    window.addEventListener('keydown', handleActivity);
+
+    return () => {
+      window.removeEventListener('mousemove', handleActivity);
+      window.removeEventListener('keydown', handleActivity);
+    };
   }, []);
 
   return (
@@ -72,16 +90,30 @@ const Login = () => {
       <div className="inputs">
         <div className="input">
           <PhoneAndroidIcon />
-          <input type="text" placeholder="Nomer HP" value={phone} onChange={handlePhoneChange} />
+          <input 
+            type="text" 
+            placeholder="Nomer HP" 
+            value={phone} 
+            onChange={handlePhoneChange} 
+          />
           {phoneError && <div className="error-message">{phoneError}</div>}
         </div>
         <div className="input">
           <LockIcon />
-          <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <input 
+            type="password" 
+            placeholder="Password" 
+            value={password} 
+            onChange={(e) => setPassword(e.target.value)} 
+          />
         </div>
+        {loginError && <div className="error-message">{loginError}</div>}
       </div>
       <div className="submit-container">
         <div className="submit" onClick={handleLogin}>Log In</div>
+      <center>
+        <p>Belum punya akun <span className="forget-password" onClick={() => navigate('/Register')}>Klik sini</span></p>
+      </center>
       </div>
     </div>
   );

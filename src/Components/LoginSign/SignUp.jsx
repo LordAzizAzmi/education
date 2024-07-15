@@ -28,7 +28,7 @@ const SignUp = () => {
   const handleSignUp = async () => {
     if (username !== "" && phone !== "" && password !== "") {
       try {
-        const response = await axios.post(`${API_BASE_URL}/register`, {
+        const response = await axios.post(`${API_BASE_URL}/users`, {
           username,
           phone,
           password
@@ -79,10 +79,10 @@ const SignUp = () => {
       </div>
       <div className="submit-container">
         <div className="submit" onClick={handleSignUp}>Sign Up</div>
-      </div>
       <center>
         <p>Jika sudah punya akun <span className="forget-password" onClick={() => navigate('/login')}>Klik sini</span></p>
       </center>
+      </div>
     </div>
   );
 }

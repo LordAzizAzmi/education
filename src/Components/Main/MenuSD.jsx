@@ -1,38 +1,83 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./MainRill.css";
-import { Link } from "react-router-dom";
 import LogoSD from "../Assets/logoSD.jpeg";
+import logouser from "../Assets/userdefault.png";
 import Button from 'react-bootstrap/Button';
 import Image from "react-bootstrap/Image";
 
-
 const Menusd = () => {
-  const [selectedMeetings, setSelectedMeetings] = useState(0);
-  const [selectedSubjects, setSelectedSubjects] = useState([]);
+  const [selectedMeeting, setSelectedMeeting] = useState(null);
+  const [nama_kursus, setnama_kursus] = useState([]);
+  const [username, setUsername] = useState('');
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const storedUsername = localStorage.getItem('username');
+    if (storedUsername) {
+      setUsername(storedUsername);
+    } else {
+      navigate('/login');
+    }
+  }, [navigate]);
+
+  useEffect(() => {
+    const checkInactivity = () => {
+      const lastActive = parseInt(localStorage.getItem('lastActive'), 10);
+      const now = Date.now();
+      const maxInactivityTime = 30 * 60 * 1000; // 30 minutes
+
+      if (now - lastActive > maxInactivityTime) {
+        handleLogout();
+      }
+    };
+
+    const intervalId = setInterval(checkInactivity, 60 * 1000); // Check every 1 minute
+
+    return () => clearInterval(intervalId);
+  }, []);
 
   const handleMeetingChange = (event) => {
-    const meetings = parseInt(event.target.value);
-    setSelectedMeetings(meetings);
-    // Reset selected subjects if the number of allowed subjects is decreased
-    if (selectedSubjects.length > meetings) {
-      setSelectedSubjects(selectedSubjects.slice(0, meetings));
+    const [meetings, price] = event.target.value.split(',');
+    setSelectedMeeting({ meetings: parseInt(meetings), price: parseFloat(price.replace(/[^0-9.-]+/g,"")) });
+    if (nama_kursus.length > parseInt(meetings)) {
+      setnama_kursus(nama_kursus.slice(0, parseInt(meetings)));
     }
   };
 
   const handleSubjectChange = (event) => {
     const subject = event.target.value;
-    if (selectedSubjects.includes(subject)) {
-      setSelectedSubjects(selectedSubjects.filter((s) => s !== subject));
-    } else if (selectedSubjects.length < selectedMeetings) {
-      setSelectedSubjects([...selectedSubjects, subject]);
+    if (nama_kursus.includes(subject)) {
+      setnama_kursus(nama_kursus.filter((s) => s !== subject));
+    } else if (nama_kursus.length < selectedMeeting.meetings) {
+      setnama_kursus([...nama_kursus, subject]);
     }
+  };
+
+  const handleSubmit = () => {
+    navigate('/form', {
+      state: {
+        paket: 'SD',
+        selectedMeeting,
+        nama_kursus
+      }
+    });
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('username');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('lastActive');
+    navigate('/login');
   };
 
   return (
     <div className="containerAnyMain">
       <div className="Sidemenu">
-        <Image src={LogoSD} rounded />
-        <div className="username">username</div>
+        <Image src={logouser} rounded />
+        <div className="username">
+          <p>{username ? `${username}` : 'Loading...'}</p>
+        </div>
         <nav>
           <ul>
             <li>
@@ -42,7 +87,7 @@ const Menusd = () => {
               <Link to="/Menu">Jenjang</Link>
             </li>
             <li>
-              <Link to="/Login">Log Out</Link>
+              <div className="SideLogout" onClick={handleLogout} style={{ cursor: 'pointer' }}>Log Out</div>
             </li>
           </ul>
         </nav>
@@ -51,7 +96,7 @@ const Menusd = () => {
         <div className="tekstitle">"AMA" Education Centre</div>
       </div>
       <div className="course-selection">
-          <div className="tekstitle" style={{marginLeft:"10px"}}>Pilih Kursus</div>
+        <div className="tekstitle" style={{marginLeft:"10px"}}>Pilih Kursus</div>
       </div>
       <div className="containerjnj">
         <Image src={LogoSD} rounded />
@@ -65,7 +110,7 @@ const Menusd = () => {
             type="radio"
             id="3x"
             name="meetings"
-            value="3"
+            value="3, 250000"
             onChange={handleMeetingChange}
           />
           <label htmlFor="3x" className="teks">3 x Seminggu - Rp. 250.000 /bln</label>
@@ -76,7 +121,7 @@ const Menusd = () => {
             type="radio"
             id="2x"
             name="meetings"
-            value="2"
+            value="2, 200000"
             onChange={handleMeetingChange}
           />
           <label htmlFor="2x" className="teks">2 x Seminggu - Rp. 200.000 /bln</label>
@@ -86,33 +131,34 @@ const Menusd = () => {
             type="radio"
             id="3x1"
             name="meetings"
-            value="3"
+            value="3, 270000"
             onChange={handleMeetingChange}
           />
           <label htmlFor="3x1" className="teks">3 x Seminggu - Rp. 270.000 /bln</label>
         </div>
         <h3>Pilih Pelajaran:</h3>
-          <div className="teks">{["Matematika", "IPA", "IPS", "Bahasa Indonesia"].map(
+        <div className="teks">
+          {["Matematika", "Ipa", "IPS", "Bahasa Indonesia"].map(
             (subject) => (
               <div key={subject}>
                 <input
                   type="checkbox"
                   id={subject}
                   value={subject}
-                  checked={selectedSubjects.includes(subject)}
+                  checked={nama_kursus.includes(subject)}
                   onChange={handleSubjectChange}
                   disabled={
-                    selectedSubjects.length >= selectedMeetings &&
-                    !selectedSubjects.includes(subject)
+                    nama_kursus.length >= selectedMeeting?.meetings &&
+                    !nama_kursus.includes(subject)
                   }
                 />
-              <label htmlFor={subject}>{subject}</label>
-            </div>
-          )
-        )}
+                <label htmlFor={subject}>{subject}</label>
+              </div>
+            )
+          )}
         </div>
       </div>
-      <Button className="buttonMenu">Oke</Button>{' '}
+      <Button className="buttonMenu" onClick={handleSubmit} disabled={!selectedMeeting}>Oke</Button>
     </div>
   );
 };
