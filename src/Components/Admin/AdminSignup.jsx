@@ -1,18 +1,16 @@
-// src/components/SignUp.jsx
+// src/components/AdminSignUp.jsx
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './LoginSign.css';
+import '../../Components/LoginSign/LoginSign.css';
 import PersonIcon from '@mui/icons-material/Person';
-import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
 import LockIcon from '@mui/icons-material/Lock';
 import API_BASE_URL from '../../../src/apiConfig';
 
-const SignUp = () => {
+const AdminSignUp = () => {
   const [username, setUsername] = useState("");
-  const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
-  const [phoneError, setPhoneError] = useState("");
+  const [signupError, setSignupError] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,44 +20,33 @@ const SignUp = () => {
     localStorage.removeItem('lastActive');
   }, []);
 
-  const handlePhoneChange = (event) => {
-    const newPhone = event.target.value.replace(/\D/g, '');
-    if (newPhone.length > 12) {
-      setPhoneError("Nomor HP tidak boleh lebih dari 12 digit");
-      return;
-    }
-    setPhone(newPhone);
-    setPhoneError("");
-  };
-
   const handleSignUp = async () => {
-    if (username !== "" && phone !== "" && password !== "") {
+    if (username !== "" && password !== "") {
       try {
-        const response = await axios.post(`${API_BASE_URL}/users`, {
+        const response = await axios.post(`${API_BASE_URL}/admin`, {
           username,
-          phone,
           password
         });
         console.log('SignUp Response:', response);
         if (response.data.status === 'success') {
-          navigate('/login');
+          navigate('/AdminLogin');
         } else {
-          alert(`Sign up failed: ${response.data.message}`);
+          setSignupError(`Sign up failed: ${response.data.message}`);
         }
       } catch (error) {
         if (error.response) {
           console.error("Server responded with error:", error.response.data);
-          alert(`Sign up failed: ${error.response.data.message || 'Unknown error'}`);
+          setSignupError(`Sign up failed: ${error.response.data.message || 'Unknown error'}`);
         } else if (error.request) {
           console.error("No response received:", error.request);
-          alert("No response from server. Please check your network.");
+          setSignupError("No response from server. Please check your network.");
         } else {
           console.error("Error setting up request:", error.message);
-          alert("Terjadi kesalahan saat mendaftar. Silakan coba lagi.");
+          setSignupError("Terjadi kesalahan saat mendaftar. Silakan coba lagi.");
         }
       }
     } else {
-      alert("Silakan lengkapi formulir terlebih dahulu.");
+      setSignupError("Silakan lengkapi formulir terlebih dahulu.");
     }
   };
 
@@ -75,23 +62,19 @@ const SignUp = () => {
           <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
         </div>
         <div className="input">
-          <PhoneAndroidIcon />
-          <input type="text" placeholder="Nomer HP" value={phone} onChange={handlePhoneChange} />
-          {phoneError && <div className="error-message">{phoneError}</div>}
-        </div>
-        <div className="input">
           <LockIcon />
           <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </div>
+        {signupError && <div className="error-message">{signupError}</div>}
       </div>
       <div className="submit-container">
         <div className="submit" onClick={handleSignUp}>Sign Up</div>
-      <center>
-        <p>Jika sudah punya akun <span className="forget-password" onClick={() => navigate('/login')}>Klik sini</span></p>
-      </center>
+        <center>
+          <p>Jika sudah punya akun <span className="forget-password" onClick={() => navigate('/AdminLogin')}>Klik sini</span></p>
+        </center>
       </div>
     </div>
   );
 }
 
-export default SignUp;
+export default AdminSignUp;

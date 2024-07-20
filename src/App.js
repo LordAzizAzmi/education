@@ -12,6 +12,11 @@ import MenuSMP from './Components/Main/MenuSMP';
 import MenuSMA from './Components/Main/MenuSMA';
 import Form from './Components/Form/Form';
 import Box from './Components/Main/Box';
+import AdminLogin from './Components/Admin/AdminLogin';
+import AdminSignup from './Components/Admin/AdminSignup';
+import AdminMenu from './Components/Admin/AdminMenu';
+import AdminPending from './Components/Admin/AdminPending';
+import AdminAktif from './Components/Admin/AdminAcc';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 //import TestGet from './Components/LoginSign/TestGet'; memanggil file TestGet';
@@ -34,6 +39,11 @@ function App() {
             <Route path='/MenuSMA' element={<MenuSMA />} />
             <Route path='/Form' element={<Form />} />
             <Route path='/Box' element={<Box/>} />
+            <Route path='/AdminRegister' element={<AdminSignup/>} />
+            <Route path='/AdminLogin' element={<AdminLogin/>} />
+            <Route path='/AdminMenu' element={<AdminMenu/>} />
+            <Route path='/AdminPending' element={<AdminPending/>} />
+            <Route path='/AdminAktif' element={<AdminAktif/>} />
         </Routes>
         </router>
         </div>

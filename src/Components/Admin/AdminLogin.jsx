@@ -1,28 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './LoginSign.css';
-import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
+import '../../Components/LoginSign/LoginSign.css';
+import PersonIcon from '@mui/icons-material/Person';
 import LockIcon from '@mui/icons-material/Lock';
 import { useNavigate } from 'react-router-dom';
 import API_BASE_URL from '../../../src/apiConfig';
 
-const Login = () => {
-  const [phone, setPhone] = useState("");
+const AdminLogin = () => {
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
-  const [phoneError, setPhoneError] = useState("");
   const [loginError, setLoginError] = useState("");
   const navigate = useNavigate();
-
-  const handlePhoneChange = (event) => {
-    const newPhone = event.target.value.replace(/\D/g, '');
-    if (newPhone.length > 12) {
-      setPhoneError("Nomor HP tidak boleh lebih dari 12 digit");
-      return;
-    }
-    setPhoneError("");
-    setPhone(newPhone);
-  };
 
   useEffect(() => {
     // Hapus sesi local storage
@@ -34,8 +23,8 @@ const Login = () => {
   const handleLogin = async () => {
     if (!loggedIn) {
       try {
-        const response = await axios.post(`${API_BASE_URL}/users/verify`, {
-          phone,
+        const response = await axios.post(`${API_BASE_URL}/admin/verify`, {
+          username,
           password
         });
 
@@ -43,10 +32,10 @@ const Login = () => {
 
         if (response.data.status === 'success') {
           setLoggedIn(true);
-          localStorage.setItem('userId', response.data.data.userId);
-          localStorage.setItem('username', response.data.data.username);
+          localStorage.setItem('userId', response.data.data.adminId);
+          localStorage.setItem('username', username);
           localStorage.setItem('lastActive', Date.now().toString()); // Store the current time for activity check
-          navigate('/Menu');
+          navigate('/AdminMenu');
         } else {
           setLoginError(`Login failed: ${response.data.message}`);
         }
@@ -63,7 +52,7 @@ const Login = () => {
         }
       }
     } else {
-      navigate('/Menu');
+      navigate('/AdminMenu');
     }
   };
 
@@ -96,14 +85,13 @@ const Login = () => {
       </div>
       <div className="inputs">
         <div className="input">
-          <PhoneAndroidIcon />
+          <PersonIcon />
           <input 
             type="text" 
-            placeholder="Nomer HP" 
-            value={phone} 
-            onChange={handlePhoneChange} 
+            placeholder="Username" 
+            value={username} 
+            onChange={(e) => setUsername(e.target.value)} 
           />
-          {phoneError && <div className="error-message">{phoneError}</div>}
         </div>
         <div className="input">
           <LockIcon />
@@ -119,11 +107,11 @@ const Login = () => {
       <div className="submit-container">
         <div className="submit" onClick={handleLogin}>Log In</div>
       <center>
-        <p>Belum punya akun <span className="forget-password" onClick={() => navigate('/Register')}>Klik sini</span></p>
+        <p>Belum punya akun <span className="forget-password" onClick={() => navigate('/AdminSignUp')}>Klik sini</span></p>
       </center>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default AdminLogin;

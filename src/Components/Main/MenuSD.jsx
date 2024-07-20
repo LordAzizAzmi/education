@@ -46,6 +46,11 @@ const Menusd = () => {
   };
 
   const handleSubjectChange = (event) => {
+    if (!selectedMeeting) {
+      alert("Pilih Pertemuan dulu");
+      return;
+    }
+
     const subject = event.target.value;
     if (nama_kursus.includes(subject)) {
       setnama_kursus(nama_kursus.filter((s) => s !== subject));
