@@ -92,6 +92,9 @@ const Menusma = () => {
               <Link to="/Menu">Jenjang</Link>
             </li>
             <li>
+                <Link to="/Riwayat">Riwayat</Link>
+            </li>
+            <li>
               <div className="SideLogout" onClick={handleLogout} style={{ cursor: 'pointer' }}>Log Out</div>
             </li>
           </ul>

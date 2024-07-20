@@ -1,20 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './Dashboard.css';
 import Logo from '../Assets/logoAMA.jpg';
 
-function Dashboard() {
-    const [username, setUsername] = useState('');
-    const navigate = useNavigate();
-  
-    useEffect(() => {
-      const storedUsername = localStorage.getItem('username');
-      if (storedUsername) {
-        setUsername(storedUsername);
-      } else {
-        navigate('/login'); // Jika username tidak ada di localStorage, arahkan kembali ke halaman login
-      }
-    }, [navigate]);
+function Landingpage() {
+
+  useEffect(() => {
+    // Hapus sesi local storage
+    localStorage.removeItem('username');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('lastActive');
+  }, []);
 
   return (
     <div>
@@ -39,9 +35,16 @@ function Dashboard() {
             <p className="carddashboard__description">POSTER</p>
           </div>
         </div>
-        <Link to="/Menu">
+
+        <Link to="/Login">
           <button className="buttonLGSG" style={{ top: "90%", left: "50%" }}>
-            Ke Menu
+            Masuk
+          </button>
+        </Link>
+        <br /><br />
+        <Link to="/Register">
+          <button className="buttonLGSG" style={{ top: "90%", left: "50%" }}>
+            Daftar
           </button>
         </Link>
       </div>
@@ -49,4 +52,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default Landingpage;
