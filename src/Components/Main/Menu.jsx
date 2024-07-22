@@ -85,26 +85,26 @@ const Menu = () => {
               <div className="category">SD</div>
             </div>
           </Link>
+        </div>
+        <div className="cardM-container">
           <Link to="/MenuSMP">
-            <div className="cardM" style={{ position: "relative", top: "106px", left: "150px" }}>
+            <div className="cardM" style={{ position: "relative", top: "206px", left: "-75px" }}>
               <div className="cardM-image"><img src={LogoSMP} alt="LogoSMP" /></div>
               <div className="category">SMP</div>
             </div>
           </Link>
-        </div>
-        <div className="cardM-container">
           <Link to="/MenuSMA">
-            <div className="cardM" style={{ position: "relative", top: "206px", left: "-80px" }}>
+            <div className="cardM" style={{ position: "relative", top: "206px", left: "40px" }}>
               <div className="cardM-image"><img src={LogoSMA} alt="LogoSMA" /></div>
               <div className="category">SMA</div>
             </div>
-          </Link>
+          </Link> {/*
           <Link to="/MenuEnglish">
             <div className="cardM" style={{ position: "relative", top: "206px", left: "120px" }}>
               <div className="cardM-image"></div>
               <div className="category">Bahasa Inggris</div>
             </div>
-          </Link>
+          </Link> */}
         </div>
       </div>
     </div>

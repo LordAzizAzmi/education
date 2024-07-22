@@ -35,6 +35,8 @@ const Formpage = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('username');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('lastActive');
     navigate('/login');
   };
 
@@ -45,12 +47,14 @@ const Formpage = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const userId = localStorage.getItem('userId');
+    console.log('userId from localStorage:', userId); // Log the userId from local storage
     const dataToSubmit = {
       ...formData,
       jumlah_pertemuan: selectedMeeting.meetings,
       harga: selectedMeeting.price, // Ensure harga is a number
       nama_kursus: nama_kursus.join(', '),
-      userId: localStorage.getItem('userId') // Assuming userId is stored in localStorage
+      userId: userId // Assuming userId is stored in localStorage
     };
 
     try {
@@ -89,6 +93,9 @@ const Formpage = () => {
             <li>
               <Link to="/Menu">Jenjang</Link>
             </li>
+            <li>
+                <Link to="/Riwayat">Riwayat</Link>
+              </li>
             <li>
               <div className="SideLogout" onClick={handleLogout} style={{ cursor: 'pointer' }}>Log Out</div>
             </li>

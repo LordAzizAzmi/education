@@ -43,9 +43,10 @@ const Login = () => {
 
         if (response.data.status === 'success') {
           setLoggedIn(true);
-          localStorage.setItem('userId', response.data.data.userId);
+          localStorage.setItem('userId', response.data.data.id);
           localStorage.setItem('username', response.data.data.username);
           localStorage.setItem('lastActive', Date.now().toString()); // Store the current time for activity check
+          console.log('Stored userId:', response.data.data.id); // Log the stored userId
           navigate('/Menu');
         } else {
           setLoginError(`Login failed: ${response.data.message}`);

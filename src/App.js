@@ -12,6 +12,7 @@ import MenuSD from './Components/Main/MenuSD';
 import MenuSMP from './Components/Main/MenuSMP';
 import MenuSMA from './Components/Main/MenuSMA';
 import Form from './Components/Form/Form';
+import Riwayat from './Components/Riwayat/Riwayat';
 import Box from './Components/Main/Box';
 import AdminLogin from './Components/Admin/AdminLogin';
 import AdminSignup from './Components/Admin/AdminSignup';
@@ -39,6 +40,7 @@ function App() {
             <Route path='/MenuSMP' element={<MenuSMP />} />
             <Route path='/MenuSMA' element={<MenuSMA />} />
             <Route path='/Form' element={<Form />} />
+            <Route path='/Riwayat' element={<Riwayat />} />
             <Route path='/Box' element={<Box/>} />
             <Route path='/AdminRegister' element={<AdminSignup/>} />
             <Route path='/AdminLogin' element={<AdminLogin/>} />

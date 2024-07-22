@@ -1,0 +1,11 @@
+.containerRiwayatForm {
+    width: 100%;
+    top: 30%;
+    max-width: 1200px;
+    margin: 20px auto; /* Center container horizontally with auto margin */
+    padding: 20px;
+    background-color: white;
+    transform: translate(10%, 25%);
+    border: 1px solid black;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for better visibility */
+}
