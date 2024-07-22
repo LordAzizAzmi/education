@@ -77,79 +77,77 @@ const AdminMenu = () => {
   };
 
   return (
-    <div>
-      <div className="containerMenu">
-        <div className="HeaderMenu">
-          <Image src={logouser} rounded />
-          <div className="username">
-            <p>{username ? `${username}` : 'Loading...'}</p>
-          </div>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/AdminMenu">Tampilkan Semua</Link>
-              </li>
-              <li>
-                <Link to="/AdminPending">Pending</Link>
-              </li>
-              <li>
-                <Link to="/AdminAktif">Aktif</Link>
-              </li>
-              <li>
-                <div className="HeaderLogout" onClick={handleLogout} style={{ cursor: 'pointer' }}>Log Out</div>
-              </li>
-            </ul>
-          </nav>
-          <div className="TitleMenu">
-            <p>Jenjang Kelas</p>
-          </div>
+    <div className="containerMenu">
+      <div className="HeaderMenu">
+        <Image src={logouser} rounded />
+        <div className="username">
+          <p>{username ? `${username}` : 'Loading...'}</p>
         </div>
-        <div className="containerOutputForm">
-            {forms.length > 0 ? (
-              <Table>
-                <thead>
-                  <tr>
-                    <th>Nama</th>
-                    <th>Alamat</th>
-                    <th>Phone</th>
-                    <th>TTL</th>
-                    <th>Pendidikan</th>
-                    <th>Agama</th>
-                    <th>Nama Kursus</th>
-                    <th>Jumlah Pertemuan</th>
-                    <th>Harga</th>
-                    <th>Status</th>
-                    <th>Aksi</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {forms.map(form => (
-                    <tr key={form.id}>
-                      <td>{form.nama}</td>
-                      <td>{form.alamat}</td>
-                      <td>{form.phone}</td>
-                      <td>{form.ttl}</td>
-                      <td>{form.pendidikan}</td>
-                      <td>{form.agama}</td>
-                      <td>{form.namaKursus}</td>
-                      <td>{form.jumlahPertemuan}</td>
-                      <td>{form.harga}</td>
-                      <td>{form.status}</td>
-                      <td>
-                        {form.status === 'pending' && (
-                          <button onClick={() => handleUpdateStatus(form.id, 'active')}>
-                            Terima
-                          </button>
-                        )}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </Table>
-            ) : (
-              <p>Loading forms...</p>
-            )}
-          </div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/AdminMenu">Tampilkan Semua</Link>
+            </li>
+            <li>
+              <Link to="/AdminPending">Pending</Link>
+            </li>
+            <li>
+              <Link to="/AdminAktif">Aktif</Link>
+            </li>
+            <li>
+              <div className="HeaderLogout" onClick={handleLogout} style={{ cursor: 'pointer' }}>Log Out</div>
+            </li>
+          </ul>
+        </nav>
+        <div className="TitleMenu">
+          <p>Jenjang Kelas</p>
+        </div>
+      </div>
+      <div className="containerOutputForm">
+        {forms.length > 0 ? (
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>Nama</th>
+                <th>Alamat</th>
+                <th>Phone</th>
+                <th>TTL</th>
+                <th>Pendidikan</th>
+                <th>Agama</th>
+                <th>Nama Kursus</th>
+                <th>Jumlah Pertemuan</th>
+                <th>Harga</th>
+                <th>Status</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              {forms.map(form => (
+                <tr key={form.id}>
+                  <td>{form.nama}</td>
+                  <td>{form.alamat}</td>
+                  <td>{form.phone}</td>
+                  <td>{form.ttl}</td>
+                  <td>{form.pendidikan}</td>
+                  <td>{form.agama}</td>
+                  <td>{form.namaKursus}</td>
+                  <td>{form.jumlahPertemuan}</td>
+                  <td>{form.harga}</td>
+                  <td>{form.status}</td>
+                  <td>
+                    {form.status === 'pending' && (
+                      <button onClick={() => handleUpdateStatus(form.id, 'active')}>
+                        Terima
+                      </button>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        ) : (
+          <p>Loading forms...</p>
+        )}
       </div>
     </div>
   );
