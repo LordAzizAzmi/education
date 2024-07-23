@@ -5,7 +5,7 @@ import Logo from "../Assets/logoAMA.jpg";
 import Poster from "../Assets/poster.jpg";
 import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
-import Row from 'react-bootstrap/Row';
+
 
 function Landingpage() {
   useEffect(() => {
