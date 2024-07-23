@@ -72,6 +72,7 @@ const Menu = () => {
             <p>Jenjang Kelas</p>
           </div>
         </div>
+        <br /><br /><br /><br />
         <div className="cardM-container">
           <Link to="/MenuTK">
             <div className="cardM" style={{ position: "relative", top: "106px", left: "-75px" }}>

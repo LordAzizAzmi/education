@@ -21,30 +21,28 @@ function Dashboard() {
     }, [navigate]);
 
   return (
-    <div>
-      <div className="container1">
-        <br /> <br />
+    <div className="container1">
+      <div className="left-content">
         <div className="circle-container">
           <div className="circle">
             <img src={Logo} alt="Logo" />
           </div>
         </div>
-        <br />
-        <div className="title">" AMA " <br /> EDUCATION CENTRE
+        <div className="title">
+          " AMA " <br /> EDUCATION CENTRE
         </div>
-        <br />
-        <br />
-        <br />
-        <Col xs={6} md={4}>
-          <Image src={Poster} thumbnail />
-        </Col>
-        <br />
-        <br />
-        <Link to="/Menu">
-          <button className="buttonLGSG" style={{ top: "90%", left: "50%" }}>
-            Ke Menu
-          </button>
-        </Link>
+        <div className="buttons">
+          <Link to="/Menu">
+            <button className="buttonLGSG">
+              Kembali
+            </button>
+          </Link>
+        </div>
+      </div>
+      <div className="right-content">
+        <div className="cardPoster">
+        <Image src={Poster} thumbnail className="poster" />
+        </div>
       </div>
     </div>
   );

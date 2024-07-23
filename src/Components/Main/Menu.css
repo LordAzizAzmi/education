@@ -87,6 +87,7 @@
   justify-content: space-around; /* atau gunakan space-between, space-evenly, atau flex-start sesuai kebutuhan */
   align-items: flex-start;
   flex-wrap: wrap; /* Tambahkan ini jika ada lebih dari satu kartu untuk menyesuaikan layout */
+  
 }
 
 .cardM {
