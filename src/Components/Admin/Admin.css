@@ -1,6 +1,6 @@
 .containerOutputForm {
     width: 1200px; /* Atur lebar sesuai kebutuhan */
-    margin: 20px auto; /* Pusatkan kontainer secara horizontal dan tambahkan margin untuk spasi vertikal */
+    margin: 200px auto 80px auto; /* Pusatkan kontainer secara horizontal dan tambahkan margin untuk spasi vertikal */
     padding: 20px; /* Tambahkan padding untuk estetika */
     background-color: white;
     border: 1px solid black;
