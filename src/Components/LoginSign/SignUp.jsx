@@ -34,7 +34,7 @@ const SignUp = () => {
   const handleSignUp = async () => {
     if (username !== "" && phone !== "" && password !== "") {
       try {
-        const response = await fetch(`http://api.amaeducation.my.id/api/users`, {
+        const response = await fetch(`${API_BASE_URL}/users`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
