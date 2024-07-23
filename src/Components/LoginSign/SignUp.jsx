@@ -1,6 +1,5 @@
 // src/components/SignUp.jsx
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './LoginSign.css';
 import PersonIcon from '@mui/icons-material/Person';
@@ -35,28 +34,25 @@ const SignUp = () => {
   const handleSignUp = async () => {
     if (username !== "" && phone !== "" && password !== "") {
       try {
-        const response = await axios.post(`${API_BASE_URL}/users`, {
-          username,
-          phone,
-          password
+        const response = await fetch(`http://api.amaeducation.my.id/api/users`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ username, phone, password }),
         });
-        console.log('SignUp Response:', response);
-        if (response.data.status === 'success') {
+
+        const result = await response.json();
+        console.log('SignUp Response:', result);
+
+        if (response.ok) {
           navigate('/login');
         } else {
-          alert(`Sign up failed: ${response.data.message}`);
+          alert(`Sign up failed: ${result.message}`);
         }
       } catch (error) {
-        if (error.response) {
-          console.error("Server responded with error:", error.response.data);
-          alert(`Sign up failed: ${error.response.data.message || 'Unknown error'}`);
-        } else if (error.request) {
-          console.error("No response received:", error.request);
-          alert("No response from server. Please check your network.");
-        } else {
-          console.error("Error setting up request:", error.message);
-          alert("Terjadi kesalahan saat mendaftar. Silakan coba lagi.");
-        }
+        console.error("Error during sign up:", error);
+        alert("Terjadi kesalahan saat mendaftar. Silakan coba lagi.");
       }
     } else {
       alert("Silakan lengkapi formulir terlebih dahulu.");
@@ -86,9 +82,9 @@ const SignUp = () => {
       </div>
       <div className="submit-container">
         <div className="submit" onClick={handleSignUp}>Sign Up</div>
-      <center>
-        <p>Jika sudah punya akun <span className="forget-password" onClick={() => navigate('/login')}>Klik sini</span></p>
-      </center>
+        <center>
+          <p>Jika sudah punya akun <span className="forget-password" onClick={() => navigate('/login')}>Klik sini</span></p>
+        </center>
       </div>
     </div>
   );

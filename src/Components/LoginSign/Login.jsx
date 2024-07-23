@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import './LoginSign.css';
 import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
 import LockIcon from '@mui/icons-material/Lock';
@@ -34,34 +33,30 @@ const Login = () => {
   const handleLogin = async () => {
     if (!loggedIn) {
       try {
-        const response = await axios.post(`${API_BASE_URL}/users/verify`, {
-          phone,
-          password
+        const response = await fetch(`${API_BASE_URL}/api/users/verify`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ phone, password })
         });
 
-        console.log('Login Response:', response);
+        const result = await response.json();
+        console.log('Login Response:', result);
 
-        if (response.data.status === 'success') {
+        if (result.status === 'success') {
           setLoggedIn(true);
-          localStorage.setItem('userId', response.data.data.id);
-          localStorage.setItem('username', response.data.data.username);
+          localStorage.setItem('userId', result.data.id);
+          localStorage.setItem('username', result.data.username);
           localStorage.setItem('lastActive', Date.now().toString()); // Store the current time for activity check
-          console.log('Stored userId:', response.data.data.id); // Log the stored userId
+          console.log('Stored userId:', result.data.id); // Log the stored userId
           navigate('/Menu');
         } else {
-          setLoginError(`Login failed: ${response.data.message}`);
+          setLoginError(`Login failed: ${result.message}`);
         }
       } catch (error) {
-        if (error.response) {
-          console.error("Server responded with error:", error.response.data);
-          setLoginError(`Login failed: ${error.response.data.message || 'Unknown error'}`);
-        } else if (error.request) {
-          console.error("No response received:", error.request);
-          setLoginError("No response from server. Please check your network.");
-        } else {
-          console.error("Error setting up request:", error.message);
-          setLoginError("Terjadi kesalahan saat melakukan login. Silakan coba lagi.");
-        }
+        console.error('Error:', error);
+        setLoginError('Terjadi kesalahan saat melakukan login. Silakan coba lagi.');
       }
     } else {
       navigate('/Menu');
