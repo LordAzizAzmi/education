@@ -33,7 +33,7 @@ const Login = () => {
   const handleLogin = async () => {
     if (!loggedIn) {
       try {
-        const response = await fetch(`${API_BASE_URL}/api/users/verify`, {
+        const response = await fetch(`${API_BASE_URL}/users/verify`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
