@@ -8,6 +8,9 @@ import LogoSMA from '../Assets/logoSMA.jpeg';
 import Image from "react-bootstrap/Image";
 import logouser from "../Assets/userdefault.png";
 
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
 const Menu = () => {
   const [username, setUsername] = useState('');
   const navigate = useNavigate();
@@ -47,6 +50,8 @@ const Menu = () => {
   return (
     <div>
       <div className="containerMenu">
+        <Row md={4}>
+          <Col>
         <div className="HeaderMenu">
           <Image src={logouser} rounded />
           <div className="username">
@@ -68,10 +73,14 @@ const Menu = () => {
               </li>
             </ul>
           </nav>
-          <div className="TitleMenu">
+        </div>
+        </Col>
+        </Row>
+        <Row lg={10}>
+          <Col>
+        <div className="TitleMenu">
             <p>Jenjang Kelas</p>
           </div>
-        </div>
         <br /><br /><br /><br />
         <div className="cardM-container">
           <Link to="/MenuTK">
@@ -107,6 +116,8 @@ const Menu = () => {
             </div>
           </Link> */}
         </div>
+        </Col>
+        </Row>
       </div>
     </div>
   );

@@ -68,39 +68,39 @@ const Riwayat = () => {
   };
 
   return (
-    <div>
-      <div className="containerMenu">
-        <div className="HeaderMenu">
-          <Image src={logouser} rounded />
-          <div className="username">
-            <p>{username ? `${username}` : "Loading..."}</p>
-          </div>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/Dashboard">Dashboard</Link>
-              </li>
-              <li>
-                <Link to="/Menu">Jenjang</Link>
-              </li>
-              <li>
-                <Link to="/Riwayat">Riwayat</Link>
-              </li>
-              <li>
-                <div
-                  className="HeaderLogout"
-                  onClick={handleLogout}
-                  style={{ cursor: "pointer" }}
-                >
-                  Log Out
-                </div>
-              </li>
-            </ul>
-          </nav>
+    <div className="containerMenu">
+      <div className="HeaderMenu">
+        <Image src={logouser} rounded />
+        <div className="username">
+          <p>{username ? `${username}` : "Loading..."}</p>
         </div>
-        <div className="TitleMenu">
-          <p>Riwayat Pendaftaran</p>
-        </div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/Dashboard">Dashboard</Link>
+            </li>
+            <li>
+              <Link to="/Menu">Jenjang</Link>
+            </li>
+            <li>
+              <Link to="/Riwayat">Riwayat</Link>
+            </li>
+            <li>
+              <div
+                className="HeaderLogout"
+                onClick={handleLogout}
+                style={{ cursor: "pointer" }}
+              >
+                Log Out
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div className="TitleMenu">
+        <p>Riwayat Pendaftaran</p>
+      </div>
+      <div className="containerRiwayatDaftar">
         {riwayat.length > 0 ? (
           riwayat.map((form, index) => (
             <div className="containerRiwayatForm" key={index}>

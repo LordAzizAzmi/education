@@ -145,7 +145,7 @@ const Formpage = () => {
           </Form.Group>
           <Form.Group className="mb-3" controlId="pendidikan">
             <Form.Label>Pendidikan</Form.Label>
-            <Form.Control type="text" placeholder="Masukan pendidikan" style={{border:"1px solid black" , backgroundColor:"#8890944F"}} onChange={handleChange}/>
+            <Form.Control type="text" placeholder="Masukan pendidikan (SMA, SMP, SD, TK)" style={{border:"1px solid black" , backgroundColor:"#8890944F"}} onChange={handleChange}/>
           </Form.Group>
           <Form.Group className="mb-3" controlId="agama">
             <Form.Label>Agama</Form.Label>
