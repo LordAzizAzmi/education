@@ -107,7 +107,7 @@ const AdminLogin = () => {
       <div className="submit-container">
         <div className="submit" onClick={handleLogin}>Log In</div>
       <center>
-        <p>Belum punya akun <span className="forget-password" onClick={() => navigate('/AdminSignUp')}>Klik sini</span></p>
+        <p>Belum punya akun <span className="forget-password" onClick={() => navigate('/AdminRegister')}>Klik sini</span></p>
       </center>
       </div>
     </div>
